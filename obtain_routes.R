@@ -48,7 +48,7 @@ get_route <- function(origin, destination, intermediate = NULL) {
       routingPreference = "TRAFFIC_AWARE",
       computeAlternativeRoutes = TRUE,
       languageCode = "en-US",
-      units = "IMPERIAL"
+      units = "METRIC"
     )
   } else {
     request_body <- list(
@@ -59,7 +59,7 @@ get_route <- function(origin, destination, intermediate = NULL) {
       routingPreference = "TRAFFIC_AWARE",
       computeAlternativeRoutes = TRUE,
       languageCode = "en-US",
-      units = "IMPERIAL"
+      units = "METRIC"
     )
   }
   
@@ -90,7 +90,7 @@ get_route <- function(origin, destination, intermediate = NULL) {
       description = routes$description,
       static_duration = routes$staticDuration,
       polyline = routes$polyline$encodedPolyline,
-      request_time = Sys.time()
+      request_time = with_tz(Sys.time(), "US/Central")
     )
   }
   
@@ -101,9 +101,11 @@ get_route <- function(origin, destination, intermediate = NULL) {
 
 }
 
+# obtain routes -----------------------------------------------------------
+
+
 rimrock_hairball <- get_route(origin = "JND_Rimrock_inbound",
-                              destination = "Hairball_inbound"
-                              )
+                              destination = "Hairball_inbound")
 
 hairball_rimrock <- get_route(origin = "Hairball_outbound",
                               destination = "JND_Rimrock_outbound")
@@ -139,6 +141,9 @@ regent_eastbound <- get_route(origin = "Regent_Monroe",
 regent_westbound <- get_route(origin = "North_Shore_Bedford_WB",
                               destination = "Regent_Monroe")
 
+# combine routes ----------------------------------------------------------
+
+
 full_routes <- bind_rows(
   full_routes_pre,
   rimrock_hairball,
@@ -168,7 +173,37 @@ full_routes_clean <- full_routes |>
     static_duration = as.integer(str_remove(static_duration, "s")),
     day_of_week = wday(request_time, label = TRUE),
     weekend = ifelse(day_of_week %in% c("Sat", "Sun"), TRUE, FALSE),
-    distance_miles = 
-  ) 
+    distance_miles = distance / 1609.344,
+    route_id = case_when(
+      origin %in% c("JND_Rimrock_inbound", "Hairball_outbound") ~ "John Nolen Dr (Rimrock <-> Hairball)",
+      origin == "Johnson_First_inbound" ~ "Gorham (First to Bassett)",
+      origin == "University_Bassett" ~ "University (Bassett to Babcock)",
+      origin == "Johnson_Orchard" ~ "Johnson (Orchard to First)",
+      origin %in% c("E_Wash_E_Springs_inbound","E_Wash_Blair_outbound") ~ "E Wash (Blair <-> E Springs)",
+      origin %in% c("Williamson_Wilson_outbound", "Williamson_Thornton_inbound") ~ "Williamson (Wilson <-> Thornton)",
+      origin %in% c("Park_Badger_inbound", "Park_University_outbound") ~ "Park (Badger <-> University)",
+      origin == "Broom_JND" ~ "Broom (JND to University)",
+      origin %in% c(origin = "Regent_Monroe", "North_Shore_Bedford_WB") ~ "Regent (Monroe <-> Bedford)"
+    ),
+    direction = case_match(origin,
+                           c("JND_Rimrock_inbound", 
+                             "Johnson_Orchard",
+                             "E_Wash_Blair_outbound",
+                             "Williamson_Wilson_outbound",
+                             "Park_Badger_inbound",
+                             "Broom_JND") ~ "NB",
+                           c("Hairball_outbound",
+                             "Johnson_First_inbound",
+                             "E_Wash_E_Springs_inbound",
+                             "Williamson_Thornton_inbound",
+                             "Park_University_outbound") ~ "SB",
+                           c("University_Bassett",
+                             "North_Shore_Bedford_WB") ~ "WB",
+                           c("Regent_Monroe") ~ "EB"),
+    route_description = paste0(origin, " to ", destination, " via ", description),
+    route_description = str_replace_all(route_description, "_", " "),
+    route_description = str_replace_all(route_description, "inbound|outbound", ""),
+    route_description = str_replace_all(route_description, "  ", " ")
+  )
 
 write_csv(full_routes_clean, file = "data/data_clean.csv")
