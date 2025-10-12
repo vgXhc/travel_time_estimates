@@ -1,13 +1,6 @@
 library(httr2)
 library(tidyverse)
 
-# board <- board_s3(
-#   "willy2",
-#   region = "us-east-1",
-#   access_key = Sys.getenv("S3_WILLY_KEY"),
-#   secret_access_key = Sys.getenv("S3_WILLY_SECRET")
-# )
-
 full_routes_pre <- read_csv("data/data_raw.csv",
                             col_names = TRUE,
                             col_types = "ccciccc?")
@@ -15,13 +8,32 @@ full_routes_pre <- read_csv("data/data_raw.csv",
 # a list of origins and destinations, using Google's PlaceID format.
 # PlaceIDs can be interactively obtained here: https://developers.google.com/maps/documentation/places/web-service/place-id
 OD <- list(
-  "JND_at_North_Shore" = "EjJKb2huIE5vbGVuIERyICYgTiBTaG9yZSBEciwgTWFkaXNvbiwgV0kgNTM3MDMsIFVTQSJmImQKFAoSCXu5mjo7UwaIEQoMsRKsOd_lEhQKEgl7uZo6O1MGiBEKDLESrDnf5RoUChIJjfKfA-BSBogRYsWXJvaejFUaFAoSCXuIPEYlUwaIEXg83UWw3DMxIgoNpX6rGRXEzrjK",
-  "Olbrich_boat_launch" = "ChIJ5TFo0_BTBogRiLW3n_CHw1g",
-  "Willy_at_Ingersoll" = "EjZXaWxsaWFtc29uIFN0ICYgUyBJbmdlcnNvbGwgU3QsIE1hZGlzb24sIFdJIDUzNzAzLCBVU0EiZiJkChQKEgl5M0JHcVMGiBGPw2HWAUYh8hIUChIJeTNCR3FTBogRj8Nh1gFGIfIaFAoSCU95EHRxUwaIEWK02CjjGAaNGhQKEgnVLyMUcVMGiBGluqGTTsODeCIKDeLLrRkVHs-7yg",
-  "E_Wash_at_Milwaukee" = "EjdFIFdhc2hpbmd0b24gQXZlICYgTWlsd2F1a2VlIFN0LCBNYWRpc29uLCBXSSA1MzcwNCwgVVNBImYiZAoUChIJUc7xKnFUBogRwRIyIhvYO_MSFAoSCVHO8SpxVAaIEcESMiIb2DvzGhQKEglb_GtKEVQGiBGDTq5ArHySmxoUChIJ384s9rVWBogRKuqY4yFj-BEiCg2_lLAZFXd5vso",
-  "E_Wash_at_First" = "EjVFIFdhc2hpbmd0b24gQXZlICYgTiBGaXJzdCBTdCwgTWFkaXNvbiwgV0kgNTM3MDQsIFVTQSJmImQKFAoSCeMnhbmBUwaIEYkYcoZtUER5EhQKEgnjJ4W5gVMGiBGJGHKGbVBEeRoUChIJW_xrShFUBogRg06uQKx8kpsaFAoSCcmDLdWBUwaIEbdQz9fubXyjIgoNklqvGRUY4LzK",
-  "Wilson_at_Willy" = "EjNFIFdpbHNvbiBTdCAmIFdpbGxpYW1zb24gU3QsIE1hZGlzb24sIFdJIDUzNzAzLCBVU0EiZiJkChQKEgnhym9La1MGiBGcY9ohN_QfmhIUChIJ4cpvS2tTBogRnGPaITf0H5oaFAoSCfVVbLltUwaIEeqhwVpfun4hGhQKEglPeRB0cVMGiBFitNgo4xgGjSIKDdbmrBkVlla6yg",
-  "Eastwood_at_Winnebago" = "EjJFYXN0d29vZCBEciAmIFdpbm5lYmFnbyBTdCwgTWFkaXNvbiwgV0kgNTM3MDQsIFVTQSJmImQKFAoSCeNrPLqDUwaIEffZcIG93NP9EhQKEgnjazy6g1MGiBH32XCBvdzT_RoUChIJ9SfChYZTBogRf5DI8zHQBHYaFAoSCVkZZw6HUwaIESCTKdLOYzU9IgoNnNiuGRW5G73K"
+  "JND_Rimrock_inbound" = "Eik2OTggSm9obiBOb2xlbiBEciwgTWFkaXNvbiwgV0kgNTM3MTMsIFVTQSIxEi8KFAoSCVsFaP7lUgaIEdglumaesvmTELoFKhQKEgmN8p8D4FIGiBFixZcm9p6MVQ",
+  "JND_Rimrock_outbound" = "EiYxODE2IENvIEh3eSBNTSwgTWFkaXNvbiwgV0kgNTM3MTMsIFVTQSIxEi8KFAoSCcuqsbPoUgaIEXZaQ2U018y7EJgOKhQKEgnXphyomUwGiBFoGHtL8eDtWQ",
+  "Hairball_outbound" = "EicyIEpvaG4gTm9sZW4gRHIsIE1hZGlzb24sIFdJIDUzNzAzLCBVU0EiMBIuChQKEgmDT360FFMGiBHZk80Hp-cWtRACKhQKEgmN8p8D4FIGiBFixZcm9p6MVQ",
+  "Hairball_inbound" = "EigxMSBKb2huIE5vbGVuIERyLCBNYWRpc29uLCBXSSA1MzcwMywgVVNBIjASLgoUChIJj2RtsRRTBogRSliWlsnzEI4QCyoUChIJjfKfA-BSBogRYsWXJvaejFU",
+  "University_Bassett" = "ChIJzaxDKTRTBogRWdNAkvOqtVw",
+  "Johnson_First_inbound" = "EjFFIEpvaG5zb24gU3QgJiBOIEZpcnN0IFN0LCBNYWRpc29uLCBXSSA1MzcwNCwgVVNBImYiZAoUChIJnUXwx39TBogRPSbdiBRfApwSFAoSCZ1F8Md_UwaIET0m3YgUXwKcGhQKEglxZHLwe1MGiBEhF4UxTBvydhoUChIJyYMt1YFTBogRt1DP1-5tfKMiCg2ep68ZFa9ivMo",
+  "University_Babcock" = "EiY0MDUgQmFiY29jayBEciwgTWFkaXNvbiwgV0kgNTM3MDYsIFVTQSIxEi8KFAoSCT3PV-HGrAeIEV1_lghmhvOxEJUDKhQKEgnp9d9ax6wHiBGQ8k_yQ353jg",
+  "Johnson_Orchard" = "EikxMjYyIFcgSm9obnNvbiBTdCwgTWFkaXNvbiwgV0kgNTM3MDYsIFVTQSIxEi8KFAoSCa82OLnIrAeIET0P-Y_A50lFEO4JKhQKEgkbipoxNVMGiBEw0s6SmKjDiA",
+  "Johnson_First_outbound" = "ChIJp5bo6n9TBogRS5zC4AWaxFw",
+  "E_Wash_E_Springs_outbound" = "ChIJkbie2PRWBogRwBp5EacTCzk",
+  "E_Wash_E_Springs_inbound" = "ChIJmxSTKvVWBogRMrS3QN0reB8",
+  "E_Wash_Blair_outbound" = "ChIJ3R0F9mpTBogRWGkcBqAeqrs",
+  "E_Wash_Blair_inbound" = "ChIJrRxIe2pTBogRFg0-3Y15owU",
+  "Williamson_Thornton_inbound" = "EjZXaWxsaWFtc29uIFN0ICYgUyBUaG9ybnRvbiBBdmUsIE1hZGlzb24sIFdJIDUzNzAzLCBVU0EiZiJkChQKEglTceP-glMGiBGy4L7Ba_smehIUChIJU3Hj_oJTBogRsuC-wWv7JnoaFAoSCU95EHRxUwaIEWK02CjjGAaNGhQKEgm5hERAg1MGiBHinegnObsx4yIKDRu0rhkVLv68yg",
+  "Williamson_Thornton_outbound" = "EjZXaWxsaWFtc29uIFN0ICYgUyBUaG9ybnRvbiBBdmUsIE1hZGlzb24sIFdJIDUzNzAzLCBVU0EiZiJkChQKEglTceP-glMGiBGy4L7Ba_smehIUChIJU3Hj_oJTBogRsuC-wWv7JnoaFAoSCU95EHRxUwaIEWK02CjjGAaNGhQKEgm5hERAg1MGiBHinegnObsx4yIKDRu0rhkVLv68yg",
+  "Williamson_Wilson_inbound" = "Eik2MjggV2lsbGlhbXNvbiBTdCwgTWFkaXNvbiwgV0kgNTM3MDMsIFVTQSIxEi8KFAoSCSveXbhsUwaIEQS0W3k6DzAMEPQEKhQKEglPeRB0cVMGiBFitNgo4xgGjQ",
+  "Williamson_Wilson_outbound" = "Eik2MjEgV2lsbGlhbXNvbiBTdCwgTWFkaXNvbiwgV0kgNTM3MDMsIFVTQSIxEi8KFAoSCdG8q7FsUwaIEU-LP25VmkkZEO0EKhQKEglPeRB0cVMGiBFitNgo4xgGjQ",
+  "Park_University_inbound" = "EjJVbml2ZXJzaXR5IEF2ZSAmIE4gUGFyayBTdCwgTWFkaXNvbiwgV0kgNTM3MDMsIFVTQSJmImQKFAoSCekYkgbLrAeIEfnDmwElIVfjEhQKEgnpGJIGy6wHiBH5w5sBJSFX4xoUChIJhZwVcRCsB4gRWNpuY7HRXKgaFAoSCf3TDp7LrAeIER1_X0jI7L6zIgoNf3WsGRXNjrbK",
+  "Park_University_outbound" = "EiUzMjYgTiBQYXJrIFN0LCBNYWRpc29uLCBXSSA1MzcwNiwgVVNBIjESLwoUChIJuegMCcusB4gRQb3HYjKBG7gQxgIqFAoSCf3TDp7LrAeIER1_X0jI7L6z",
+  "Park_Badger_inbound" = "Ei9TIFBhcmsgU3QgJiBXIEJhZGdlciBSZCwgTWFkaXNvbiwgV0kgNTM3MTMsIFVTQSJmImQKFAoSCd2hRR_KUgaIEY7JBQ4CP8BhEhQKEgndoUUfylIGiBGOyQUOAj_AYRoUChIJ-4mKbNNSBogR9y961aIQPeIaFAoSCX9Eggs2rQeIEQ3TypGPiJY1IgoN_CenGRVlkLfK",
+  "Park_Badger_outbound" = "EiYyNDkwIFMgUGFyayBTdCwgTWFkaXNvbiwgV0kgNTM3MTMsIFVTQSIxEi8KFAoSCX-0GSLKUgaIEfBQdhyNGb39ELoTKhQKEgn7iYps01IGiBH3L3rVohA94g",
+  "Broom_JND" = "ChIJJw5ydztTBogRsMN72N7zVaU",
+  "Broom_Gorham" = "EjBOIEJyb29tIFN0ICYgVyBHb3JoYW0gU3QsIE1hZGlzb24sIFdJIDUzNzAzLCBVU0EiZiJkChQKEgmRvi9nNlMGiBE4lkC_kJNLzRIUChIJkb4vZzZTBogROJZAv5CTS80aFAoSCa1WKh03UwaIETrwk5plcFplGhQKEgndeI7ON1MGiBEFS_9cHUc4miIKDQyZrBkVdMa3yg",
+  "North_Shore_Bedford_WB" = "EjFTIEJlZGZvcmQgU3QgJiBOIFNob3JlIERyLCBNYWRpc29uLCBXSSA1MzcwMywgVVNBImYiZAoUChIJi77lUCVTBogR0wqFxVu0eNQSFAoSCYu-5VAlUwaIEdMKhcVbtHjUGhQKEgmXChE5MFMGiBG_UnTf7v1CExoUChIJe4g8RiVTBogReDzdRbDcMzEiCg3WV6sZFY5duMo",
+  "Regent_Monroe" = "Ei1SZWdlbnQgU3QgJiBNb25yb2UgU3QsIE1hZGlzb24sIFdJIDUzNzExLCBVU0EiZiJkChQKEgkTSHhgw6wHiBEufN3t3ebWqBIUChIJE0h4YMOsB4gRLnzd7d3m1qgaFAoSCWWR03lYrAeIEWHtAniU930-GhQKEgkDcMeV46wHiBFMOTmiBxo-jSIKDQOfqxkVLa-0yg",
+  "North_Shore_Bedford_EB" = "ChIJfVkbiC9TBogR_gz5zugkDng"
 )
 
 
@@ -34,9 +46,9 @@ get_route <- function(origin, destination, intermediate = NULL) {
       destination = list(placeId = OD[[destination]]),
       travelMode = "DRIVE",
       routingPreference = "TRAFFIC_AWARE",
-      computeAlternativeRoutes = FALSE,
+      computeAlternativeRoutes = TRUE,
       languageCode = "en-US",
-      units = "METRIC"
+      units = "IMPERIAL"
     )
   } else {
     request_body <- list(
@@ -45,14 +57,14 @@ get_route <- function(origin, destination, intermediate = NULL) {
       intermediates = list(placeId = OD[[intermediate]]),
       travelMode = "DRIVE",
       routingPreference = "TRAFFIC_AWARE",
-      computeAlternativeRoutes = FALSE,
+      computeAlternativeRoutes = TRUE,
       languageCode = "en-US",
-      units = "METRIC"
+      units = "IMPERIAL"
     )
   }
   
   
-  # Built the API request
+  # Build the API request and perform it
   response <-
     request("https://routes.googleapis.com/directions/v2:computeRoutes") |>
     req_method("POST")  |>
@@ -67,129 +79,96 @@ get_route <- function(origin, destination, intermediate = NULL) {
   # Parse the response
   result <- response %>% resp_body_json()
   
-  routes <- result$routes[[1]]
-  # Return the results as named list
-  return(
+  create_tibble <- function(x) {
+    routes <- result$routes[[x]]
     tibble(
       origin = origin,
       destination = destination,
       intermediate = ifelse(is.null(intermediate), NA_character_, intermediate),
       distance = routes$distanceMeters,
       duration = routes$duration,
+      description = routes$description,
       static_duration = routes$staticDuration,
       polyline = routes$polyline$encodedPolyline,
       request_time = Sys.time()
     )
-  )
+  }
+  
+  # Return the results as tibble
+  return(
+    map(1:length(result$routes), create_tibble) |> list_rbind()
+    )
+
 }
 
-jnd_olbrich <- get_route(origin = "JND_at_North_Shore",
-                         destination = "Olbrich_boat_launch",
-                         intermediate = "Willy_at_Ingersoll")
+rimrock_hairball <- get_route(origin = "JND_Rimrock_inbound",
+                              destination = "Hairball_inbound"
+                              )
 
-jnd_milwaukee <- get_route(origin = "JND_at_North_Shore",
-                           destination = "E_Wash_at_Milwaukee",
-                           intermediate = "E_Wash_at_First")
-jnd_milwaukee_willy <- get_route(origin = "JND_at_North_Shore",
-                                 intermediate = "Willy_at_Ingersoll",
-                                 destination = "E_Wash_at_Milwaukee")
+hairball_rimrock <- get_route(origin = "Hairball_outbound",
+                              destination = "JND_Rimrock_outbound")
 
-olbrich_jnd <- get_route(origin = "Olbrich_boat_launch",
-                         destination = "JND_at_North_Shore",
-                         intermediate = "Willy_at_Ingersoll")
+gorham <- get_route(origin = "Johnson_First_inbound",
+                    destination = "University_Bassett")
 
-milwaukee_jnd <- get_route(destination = "JND_at_North_Shore",
-                           origin = "E_Wash_at_Milwaukee",
-                           intermediate = "E_Wash_at_First")
+university <- get_route(origin = "University_Bassett",
+                        destination = "University_Babcock")
 
-milwaukee_jnd_willy <- get_route(destination = "JND_at_North_Shore",
-                                 origin = "E_Wash_at_Milwaukee",
-                                 intermediate = "Willy_at_Ingersoll")
+johnson <- get_route(origin = "Johnson_Orchard",
+                     destination = "Johnson_First_outbound")
 
-hairball_eastwood <- get_route(origin = "Wilson_at_Willy",
-                               destination = "Eastwood_at_Winnebago",
-                               intermediate = "Willy_at_Ingersoll")
-eastwood_hairball <- get_route(destination = "Wilson_at_Willy",
-                               origin = "Eastwood_at_Winnebago",
-                               intermediate = "Willy_at_Ingersoll")
+east_wash_EB <- get_route(origin = "E_Wash_Blair_outbound",
+                          destination = "E_Wash_E_Springs_outbound")
+
+east_wash_WB <- get_route(origin = "E_Wash_E_Springs_inbound",
+                          destination = "E_Wash_Blair_inbound")
+
+williamson_outbound <- get_route(origin = "Williamson_Wilson_outbound",
+                                 destination = "Williamson_Thornton_outbound")
+williamson_inbound <- get_route(origin = "Williamson_Thornton_inbound",
+                                 destination = "Williamson_Wilson_inbound")
+park_inbound <- get_route(origin = "Park_Badger_inbound",
+                          destination = "Park_University_inbound")
+park_outbound <- get_route(origin = "Park_University_outbound",
+                           destination = "Park_Badger_outbound")
+broom <- get_route(origin = "Broom_JND",
+                   destination = "Broom_Gorham")
+
+regent_eastbound <- get_route(origin = "Regent_Monroe",
+                              destination = "North_Shore_Bedford_EB")
+regent_westbound <- get_route(origin = "North_Shore_Bedford_WB",
+                              destination = "Regent_Monroe")
 
 full_routes <- bind_rows(
   full_routes_pre,
-  jnd_olbrich,
-  jnd_milwaukee_willy,
-  jnd_milwaukee,
-  olbrich_jnd,
-  milwaukee_jnd,
-  milwaukee_jnd_willy,
-  hairball_eastwood,
-  eastwood_hairball
+  rimrock_hairball,
+  hairball_rimrock,
+  gorham,
+  university,
+  johnson,
+  east_wash_EB,
+  williamson_outbound,
+  williamson_inbound,
+  park_inbound,
+  park_outbound,
+  broom,
+  regent_eastbound,
+  regent_westbound
 )
+
+
 
 full_routes |> write_csv(file = "data/data_raw.csv")
 
 # basic data cleaning and variable creation
 full_routes_clean <- full_routes |>
-  filter(!(
-    origin == "JND_at_North_Shore" &
-      destination == "Willy_at_Ingersoll"
-  )) |>
   mutate(
-    route_id = case_when(
-      origin == "JND_at_North_Shore" &
-        destination == "Olbrich_boat_launch" &
-        intermediate == "Willy_at_Ingersoll" ~ "JND to Olbrich",
-      origin == "Olbrich_boat_launch" &
-        destination == "JND_at_North_Shore" &
-        intermediate == "Willy_at_Ingersoll" ~ "Olbrich to JND",
-      origin == "E_Wash_at_Milwaukee" &
-        destination == "JND_at_North_Shore" &
-        intermediate == "E_Wash_at_First" ~ "Milwaukee to JND via E Wash",
-      destination == "E_Wash_at_Milwaukee" &
-        origin == "JND_at_North_Shore" &
-        intermediate == "E_Wash_at_First" ~ "JND to Milwaukee via E Wash",
-      origin == "E_Wash_at_Milwaukee" &
-        destination == "JND_at_North_Shore" &
-        intermediate == "Willy_at_Ingersoll" ~ "Milwaukee to JND via Willy",
-      destination == "E_Wash_at_Milwaukee" &
-        origin == "JND_at_North_Shore" &
-        intermediate == "Willy_at_Ingersoll" ~ "JND to Milwaukee via Willy",
-      destination == "Wilson_at_Willy" &
-        origin == "Eastwood_at_Winnebago" &
-        intermediate == "Willy_at_Ingersoll" ~ "Eastwood to Hairball",
-      origin == "Wilson_at_Willy" &
-        destination == "Eastwood_at_Winnebago" &
-        intermediate == "Willy_at_Ingersoll" ~ "Hairball to Eastwood"
-    ),
     duration = as.integer(str_remove(duration, "s")),
     duration_minutes = duration / 60,
     static_duration = as.integer(str_remove(static_duration, "s")),
-    traffic_delay = duration - static_duration,
-    direction = case_match(
-      route_id,
-      c(
-        "JND to Olbrich",
-        "JND to Milwaukee via E Wash",
-        "JND to Milwaukee via Willy",
-        "Hairball to Eastwood"
-      ) ~ "EB",
-      .default = "WB"
-    ),
     day_of_week = wday(request_time, label = TRUE),
     weekend = ifelse(day_of_week %in% c("Sat", "Sun"), TRUE, FALSE),
-    rush_hour = case_when(
-      !weekend &
-        (hour(request_time) == 7 |
-           (
-             hour(request_time) == 8 & minute(request_time) <= 30
-           )) ~ "am",!weekend &
-        (hour(request_time) == 16 |
-           (
-             hour(request_time) == 17 & minute(request_time) <= 30
-           )) ~ "pm",
-      .default = NA
-    )
-  ) |>
-  filter(!is.na(route_id))
+    distance_miles = 
+  ) 
 
-saveRDS(full_routes_clean, file = "data/data_clean.RDS")
 write_csv(full_routes_clean, file = "data/data_clean.csv")
