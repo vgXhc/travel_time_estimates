@@ -90,7 +90,7 @@ get_route <- function(origin, destination, intermediate = NULL) {
       description = routes$description,
       static_duration = routes$staticDuration,
       polyline = routes$polyline$encodedPolyline,
-      request_time = with_tz(Sys.time(), "US/Central")
+      request_time_UTC = Sys.time()
     )
   }
   
@@ -203,7 +203,8 @@ full_routes_clean <- full_routes |>
     route_description = paste0(origin, " to ", destination, " via ", description),
     route_description = str_replace_all(route_description, "_", " "),
     route_description = str_replace_all(route_description, "inbound|outbound", ""),
-    route_description = str_replace_all(route_description, "  ", " ")
-  )
+    route_description = str_replace_all(route_description, "  ", " "),
+    request_time_local = as.character(with_tz(request_time_UTC, tzone = "US/Central"))
+  ) 
 
 write_csv(full_routes_clean, file = "data/data_clean.csv")
