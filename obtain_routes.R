@@ -103,7 +103,6 @@ get_route <- function(origin, destination, intermediate = NULL) {
 
 # obtain routes -----------------------------------------------------------
 
-
 rimrock_hairball <- get_route(origin = "JND_Rimrock_inbound",
                               destination = "Hairball_inbound")
 
@@ -129,20 +128,23 @@ williamson_outbound <- get_route(origin = "Williamson_Wilson_outbound",
                                  destination = "Williamson_Thornton_outbound")
 williamson_inbound <- get_route(origin = "Williamson_Thornton_inbound",
                                  destination = "Williamson_Wilson_inbound")
+
 park_inbound <- get_route(origin = "Park_Badger_inbound",
                           destination = "Park_University_inbound")
+
 park_outbound <- get_route(origin = "Park_University_outbound",
                            destination = "Park_Badger_outbound")
+
 broom <- get_route(origin = "Broom_JND",
                    destination = "Broom_Gorham")
 
 regent_eastbound <- get_route(origin = "Regent_Monroe",
                               destination = "North_Shore_Bedford_EB")
+
 regent_westbound <- get_route(origin = "North_Shore_Bedford_WB",
                               destination = "Regent_Monroe")
 
 # combine routes ----------------------------------------------------------
-
 
 full_routes <- bind_rows(
   full_routes_pre,
