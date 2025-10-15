@@ -5,6 +5,7 @@ full_routes_pre <- read_csv("data/data_raw.csv",
                             col_names = TRUE,
                             col_types = "ccciccc?")
 
+
 # a list of origins and destinations, using Google's PlaceID format.
 # PlaceIDs can be interactively obtained here: https://developers.google.com/maps/documentation/places/web-service/place-id
 OD <- list(
@@ -173,7 +174,7 @@ full_routes_clean <- full_routes |>
     duration = as.integer(str_remove(duration, "s")),
     duration_minutes = duration / 60,
     static_duration = as.integer(str_remove(static_duration, "s")),
-    day_of_week = wday(request_time, label = TRUE),
+    day_of_week = wday(request_time_UTC, label = TRUE),
     weekend = ifelse(day_of_week %in% c("Sat", "Sun"), TRUE, FALSE),
     distance_miles = distance / 1609.344,
     route_id = case_when(
