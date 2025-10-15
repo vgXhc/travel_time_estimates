@@ -3,6 +3,8 @@ name: run_routes
 on:
   workflow_dispatch:
   schedule:
+    # 5:00 AM CST (11:00 UTC)
+    - cron: '0 11 * * *'
     # 6:30 AM CST (12:30 PM UTC)
     - cron: '30 12 * * *'
     # 7:00 AM CST (1:00 PM UTC)
