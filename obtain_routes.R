@@ -215,3 +215,4 @@ full_routes_clean <- full_routes |>
   relocate(polyline, .after = last_col())
 
 write_csv(full_routes_clean, file = "data/data_clean.csv")
+saveRDS(full_routes_clean, file = "data/data_clean.RDS")
