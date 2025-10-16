@@ -127,6 +127,7 @@ east_wash_WB <- get_route(origin = "E_Wash_E_Springs_inbound",
 
 williamson_outbound <- get_route(origin = "Williamson_Wilson_outbound",
                                  destination = "Williamson_Thornton_outbound")
+
 williamson_inbound <- get_route(origin = "Williamson_Thornton_inbound",
                                  destination = "Williamson_Wilson_inbound")
 
@@ -208,6 +209,9 @@ full_routes_clean <- full_routes |>
     route_description = str_replace_all(route_description, "inbound|outbound", ""),
     route_description = str_replace_all(route_description, "  ", " "),
     request_time_local = as.character(with_tz(request_time_UTC, tzone = "US/Central"))
-  ) 
+  ) |> 
+  relocate(request_time_local, .after = intermediate) |> 
+  relocate(request_time_UTC, .after = last_col()) |> 
+  relocate(polyline, .after = last_col())
 
 write_csv(full_routes_clean, file = "data/data_clean.csv")
