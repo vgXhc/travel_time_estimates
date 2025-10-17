@@ -106,11 +106,10 @@ percentiles |>
 
 travel_time |> 
   filter(route_id == "John Nolen Dr (Rimrock <-> Hairball)") |> 
-  ggplot(aes(request_time_UTC, duration_minutes, color = direction)) +
+  ggplot(aes(request_time_UTC, duration_minutes, color = direction, shape = weekend)) +
   geom_point() +
   scale_x_datetime(timezone = "US/Central", date_minor_breaks = "3 hours", name = "Date/time") +
-  ylab("Estimated travel time (minutes)") +
-  facet_wrap(~ weekend)
+  ylab("Estimated travel time (minutes)")
 ```
 
 
