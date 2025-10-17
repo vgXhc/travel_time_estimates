@@ -102,6 +102,8 @@ percentiles |>
 
 ### Travel time plots
 ```{r}
+#| column: body-outset
+
 travel_time |> 
   filter(route_id == "John Nolen Dr (Rimrock <-> Hairball)") |> 
   ggplot(aes(request_time_UTC, duration_minutes, color = direction)) +
@@ -119,6 +121,7 @@ travel_time |>
   ggplot(aes(direction, duration_minutes)) +
   geom_boxplot(outliers = FALSE)+
   geom_jitter(aes(color = weekend), width = .2) +
-  coord_flip()
+  coord_flip() +
+  theme(legend.position = "bottom")
 ```
 
