@@ -13,7 +13,7 @@ library(tmap)
 library(sf)
 library(gt)
 
-theme_set(theme_minimal)
+theme_set(theme_minimal())
 ```
 
 ```{r}
