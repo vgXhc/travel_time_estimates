@@ -1,0 +1,10 @@
+project:
+  title: "Analysis"
+  output-dir: "output"
+output: html
+execute:
+  echo: false
+  warning: false
+
+
+
