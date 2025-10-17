@@ -176,7 +176,7 @@ full_routes_clean <- full_routes |>
     duration_minutes = duration / 60,
     static_duration = as.integer(str_remove(static_duration, "s")),
     day_of_week = wday(request_time_UTC, label = TRUE),
-    weekend = ifelse(day_of_week %in% c("Sat", "Sun"), TRUE, FALSE),
+    weekend = ifelse(day_of_week %in% c("Sat", "Sun"), "Weekend", "Weekday"),
     distance_miles = distance / 1609.344,
     route_id = case_when(
       origin %in% c("JND_Rimrock_inbound", "Hairball_outbound") ~ "John Nolen Dr (Rimrock <-> Hairball)",
