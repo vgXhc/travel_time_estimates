@@ -69,7 +69,7 @@ jobs:
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
       - name: Install required packages
-        run: Rscript -e 'install.packages(c("pins", "tidyverse", "httr2"), dependencies = TRUE)'
+        run: Rscript -e 'install.packages(c("pins", "tidyverse", "httr2", "reactable", "gt", "hrbrthemes", "sf", "tmap"), dependencies = TRUE)'
       - name: Run R script to update routes
         run: Rscript obtain_routes.R
       - name: Commit data
