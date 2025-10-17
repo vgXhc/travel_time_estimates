@@ -12,7 +12,6 @@ library(ggplot2)
 library(tmap)
 library(sf)
 library(gt)
-library(hrbrthemes)
 
 theme_set(theme_ipsum())
 ```
