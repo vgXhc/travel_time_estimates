@@ -1,10 +1,16 @@
 project:
-  title: "Analysis"
-  output-dir: "output"
-output: html
-execute:
-  echo: false
-  warning: false
+  type: website
 
+website:
+  title: "today"
+  navbar:
+    left:
+      - href: analysis.qmd
+        text: Home
+      - about.qmd
 
-
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    toc: true

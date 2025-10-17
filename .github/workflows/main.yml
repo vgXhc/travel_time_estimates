@@ -66,6 +66,8 @@ jobs:
           install-r: true
           # use RStudio's CRAN mirror with precompiled binaries
           use-public-rspm: true
+      - name: Set up Quarto
+        uses: quarto-dev/quarto-actions/setup@v2
       - name: Install required packages
         run: Rscript -e 'install.packages(c("pins", "tidyverse", "httr2"), dependencies = TRUE)'
       - name: Run R script to update routes
@@ -74,3 +76,9 @@ jobs:
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: Update data
+       - name: Render and Publish
+        uses: quarto-dev/quarto-actions/publish@v2
+        with:
+          target: gh-pages
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
