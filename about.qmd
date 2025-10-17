@@ -1,0 +1,8 @@
+---
+title: "About"
+format: html
+---
+This website displays the data from the analysis of travel times in select Madison (Wisconsin) corridors. The main repository for the project is at https://github.com/vgXhc/travel_time_estimates
+
+Author/contact: Harald Kliems ([kliems@proton.me](kliems@proton.me))
+
