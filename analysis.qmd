@@ -31,33 +31,9 @@ linestring <- st_linestring(as.matrix(coords[, c("lon", "lat")]))
 return(list(linestring))
 }
 
-```
-
-
-# John Nolen Corridor
-These travel time estimates are for the John Nolen Drive (JND) corridor between Rimrock and the "Hairball" (JND/Wilson/Willy/Blair). 
-
-```{r}
-jnd <- travel_time |> 
-  filter(route_id == "John Nolen Dr (Rimrock <-> Hairball)") 
-```
-
-
-```{r}
-tmap_mode("view")
-jnd |> 
-  rowwise() |> 
-  mutate(linestring = decode_polyline(polyline)) |> 
-  st_as_sf(sf_column_name = "linestring") |> 
-  tm_shape() +
-  tm_lines(col = "direction", col_alpha = 0.03)
-```
-
-## Travel time estimates
-Travel time estimates in a sortable and filterable table:
-```{r}
-jnd |> 
-  mutate(duration_minutes = round(duration_minutes, 1),
+create_table <- function(route_data) {
+  route_data |> 
+      mutate(duration_minutes = round(duration_minutes, 1),
          static_duration = round(static_duration/60, 1)) |> 
   select(request_time_local, direction, distance_miles, duration_minutes, static_duration, day_of_week, weekend) |> 
   reactable(filterable = TRUE,
@@ -69,12 +45,10 @@ jnd |>
     day_of_week = colDef(name = "Day of week"),
     weekend = colDef(name = "Weekend"),
     direction = colDef(name = "Direction")))
-```
+}
 
-### Summary statistics
-
-```{r}
-percentiles <- jnd |> 
+create_summary_table <- function(route_data) {
+  percentiles <- route_data |> 
   group_by(direction) |> 
   summarise(
           mean = mean(duration_minutes),
@@ -97,6 +71,60 @@ percentiles |>
              max = "Maximum",
              duration_90 = "90% of trips"
              )
+}
+
+create_scatterplot <- function(route_data) {
+  route_data |> 
+  ggplot(aes(request_time_UTC, duration_minutes, color = direction, shape = weekend)) +
+  geom_point() +
+  scale_x_datetime(timezone = "US/Central", date_minor_breaks = "3 hours", name = "Date/time") +
+  ylab("Estimated travel time (minutes)")
+}
+
+create_boxplot <- function(route_data) {
+  route_data |> 
+  ggplot(aes(direction, duration_minutes)) +
+  geom_boxplot(outliers = FALSE)+
+  geom_jitter(aes(color = weekend), width = .2) +
+  coord_flip() +
+  theme(legend.position = "bottom")
+}
+
+create_map <- function(route_data) {
+  tmap_mode("view")
+route_data |> 
+  rowwise() |> 
+  mutate(linestring = decode_polyline(polyline)) |> 
+  st_as_sf(sf_column_name = "linestring") |> 
+  tm_shape() +
+  tm_lines(col = "direction", col_alpha = 0.03)
+}
+```
+
+
+# John Nolen Corridor
+These travel time estimates are for the John Nolen Drive (JND) corridor between Rimrock and the "Hairball" (JND/Wilson/Willy/Blair). 
+
+```{r}
+jnd <- travel_time |> 
+  filter(route_id == "John Nolen Dr (Rimrock <-> Hairball)") 
+```
+
+
+```{r}
+create_map(jnd)
+```
+
+## Travel time estimates
+Travel time estimates in a sortable and filterable table:
+```{r}
+create_table(jnd)
+```
+
+### Summary statistics
+
+```{r}
+create_summary_table(jnd)
 ```
 
 
@@ -104,23 +132,12 @@ percentiles |>
 ```{r}
 #| column: body-outset
 
-travel_time |> 
-  filter(route_id == "John Nolen Dr (Rimrock <-> Hairball)") |> 
-  ggplot(aes(request_time_UTC, duration_minutes, color = direction, shape = weekend)) +
-  geom_point() +
-  scale_x_datetime(timezone = "US/Central", date_minor_breaks = "3 hours", name = "Date/time") +
-  ylab("Estimated travel time (minutes)")
+create_scatterplot(jnd)
 ```
 
 
 This plot shows the median travel time (middle line), the 25th and 75th percentile (interquartile range; box), 1.5 times the interquartile range (whiskers).
 ```{r}
-travel_time |> 
-   filter(route_id == "John Nolen Dr (Rimrock <-> Hairball)") |> 
-  ggplot(aes(direction, duration_minutes)) +
-  geom_boxplot(outliers = FALSE)+
-  geom_jitter(aes(color = weekend), width = .2) +
-  coord_flip() +
-  theme(legend.position = "bottom")
+create_boxplot(jnd)
 ```
 
