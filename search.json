@@ -18,7 +18,7 @@
     "href": "analysis.html#travel-time-estimates-1",
     "title": "Travel time estimates",
     "section": "Travel time estimates",
-    "text": "Travel time estimates\nTravel time estimates in a sortable and filterable table:\n\n\n\n\n\n\n\nSummary statistics\n\n\n\n\n\n\n\n\nEstimated travel times (minutes)\n\n\nDirection\nMean\nMedian\nMinimum\nMaximum\n90% of trips\n\n\n\n\nNB\n9.3\n8.4\n6.0\n18.5\n6.5-14.8\n\n\nSB\n8.4\n8.1\n5.8\n17.9\n6.5-12.1\n\n\n\n\n\n\n\n\n\nTravel time plots\n\n\n\n\n\n\n\n\n\nThis plot shows the median travel time (middle line), the 25th and 75th percentile (interquartile range; box), 1.5 times the interquartile range (whiskers)."
+    "text": "Travel time estimates\nTravel time estimates in a sortable and filterable table:\n\n\n\n\n\n\n\nSummary statistics\n\n\n\n\n\n\n\n\nEstimated travel times (minutes)\n\n\nDirection\nMean\nMedian\nMinimum\nMaximum\n90% of trips\n\n\n\n\nNB\n9.3\n8.4\n6.0\n18.5\n6.5-14.7\n\n\nSB\n8.4\n8.1\n5.8\n17.9\n6.5-12.1\n\n\n\n\n\n\n\n\n\nTravel time plots\n\n\n\n\n\n\n\n\n\nThis plot shows the median travel time (middle line), the 25th and 75th percentile (interquartile range; box), 1.5 times the interquartile range (whiskers)."
   },
   {
     "objectID": "about.html",
