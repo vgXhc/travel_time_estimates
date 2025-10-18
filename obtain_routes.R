@@ -175,7 +175,7 @@ full_routes_clean <- full_routes |>
     duration = as.integer(str_remove(duration, "s")),
     duration_minutes = duration / 60,
     static_duration = as.integer(str_remove(static_duration, "s")),
-    day_of_week = wday(request_time_UTC, label = TRUE),
+    day_of_week = wday(with_tz(request_time_UTC, tzone = "US/Central"), label = TRUE),
     weekend = ifelse(day_of_week %in% c("Sat", "Sun"), "Weekend", "Weekday"),
     distance_miles = distance / 1609.344,
     route_id = case_when(

@@ -16,7 +16,7 @@ library(gt)
 theme_set(theme_minimal())
 ```
 
-```{r}
+```{r load-data-define-functions}
 travel_time <- readRDS("data/data_clean.RDS")
 
 decode_polyline <- function(polyline_string) {
@@ -63,7 +63,7 @@ percentiles |>
   select(-duration_5_pct, -duration_95_pct) |> 
   gt() |> 
   fmt_number(columns = where(is.numeric), decimals = 1) |> 
-  tab_header(title = "Estimated travel times on JND (minutes)") |> 
+  tab_header(title = "Estimated travel times (minutes)") |> 
   cols_label(direction = "Direction",
              mean = "Mean",
              median = "Median",
@@ -78,7 +78,8 @@ create_scatterplot <- function(route_data) {
   ggplot(aes(request_time_UTC, duration_minutes, color = direction, shape = weekend)) +
   geom_point() +
   scale_x_datetime(timezone = "US/Central", date_minor_breaks = "3 hours", name = "Date/time") +
-  ylab("Estimated travel time (minutes)")
+  ylab("Estimated travel time (minutes)") +
+  theme(legend.position = "bottom")
 }
 
 create_boxplot <- function(route_data) {
@@ -106,25 +107,25 @@ route_data |>
 These travel time estimates are for the John Nolen Drive (JND) corridor between Rimrock and the "Hairball" (JND/Wilson/Willy/Blair). 
 
 ```{r}
-jnd <- travel_time |> 
+route_data <- travel_time |> 
   filter(route_id == "John Nolen Dr (Rimrock <-> Hairball)") 
 ```
 
 
 ```{r}
-create_map(jnd)
+create_map(route_data)
 ```
 
 ## Travel time estimates
 Travel time estimates in a sortable and filterable table:
 ```{r}
-create_table(jnd)
+create_table(route_data)
 ```
 
 ### Summary statistics
 
 ```{r}
-create_summary_table(jnd)
+create_summary_table(route_data)
 ```
 
 
@@ -132,12 +133,50 @@ create_summary_table(jnd)
 ```{r}
 #| column: body-outset
 
-create_scatterplot(jnd)
+create_scatterplot(route_data)
 ```
 
 
 This plot shows the median travel time (middle line), the 25th and 75th percentile (interquartile range; box), 1.5 times the interquartile range (whiskers).
 ```{r}
-create_boxplot(jnd)
+create_boxplot(route_data)
 ```
 
+# Park Street Corridor
+These travel time estimates are for the Park Street corridor between Badger and University. This route often sees m
+
+```{r}
+route_data <- travel_time |> 
+  filter(route_id == "Park (Badger <-> University)") 
+```
+
+
+```{r}
+create_map(route_data)
+```
+
+## Travel time estimates
+Travel time estimates in a sortable and filterable table:
+```{r}
+create_table(route_data)
+```
+
+### Summary statistics
+
+```{r}
+create_summary_table(route_data)
+```
+
+
+### Travel time plots
+```{r}
+#| column: body-outset
+
+create_scatterplot(route_data)
+```
+
+
+This plot shows the median travel time (middle line), the 25th and 75th percentile (interquartile range; box), 1.5 times the interquartile range (whiskers).
+```{r}
+create_boxplot(route_data)
+```
