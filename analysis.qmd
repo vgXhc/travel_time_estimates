@@ -148,7 +148,7 @@ These travel time estimates are for the Park Street corridor between Badger Road
 ```{r}
 route_data <- travel_time |> 
   filter(route_id == "Park (Badger <-> University)" & 
-           description %in% c("Park Badger to Park University via Wisconsin Law Enforcement Officers Hwy and S Park St",
+           route_description %in% c("Park Badger to Park University via Wisconsin Law Enforcement Officers Hwy and S Park St",
                               "Park University to Park Badger via N Park St")) 
 ```
 
