@@ -156,6 +156,7 @@ full_routes <- bind_rows(
   university,
   johnson,
   east_wash_EB,
+  east_wash_WB,
   williamson_outbound,
   williamson_inbound,
   park_inbound,

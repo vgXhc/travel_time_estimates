@@ -117,36 +117,7 @@ route_data <- travel_time |>
   filter(route_id == "John Nolen Dr (Rimrock <-> Hairball)") 
 ```
 
-
-```{r}
-create_map(route_data)
-```
-
-## Travel time estimates
-Travel time estimates in a sortable and filterable table:
-```{r}
-create_table(route_data)
-```
-
-### Summary statistics
-
-```{r}
-create_summary_table(route_data)
-```
-
-
-### Travel time plots
-```{r}
-#| column: body-outset
-
-create_scatterplot(route_data)
-```
-
-
-This plot shows the median travel time (middle line), the 25th and 75th percentile (interquartile range; box), 1.5 times the interquartile range (whiskers).
-```{r}
-create_boxplot(route_data)
-```
+{{< include _results_block.qmd >}}
 
 # Park Street Corridor
 These travel time estimates are for the Park Street corridor between Badger Road and University Ave. 
@@ -159,33 +130,14 @@ route_data <- travel_time |>
 ```
 
 
-```{r}
-create_map(route_data)
-```
+{{< include _results_block.qmd >}}
 
-## Travel time estimates
-Travel time estimates in a sortable and filterable table:
-```{r}
-create_table(route_data)
-```
-
-### Summary statistics
+# East Washington Ave
+These travel times estimates are for the East Washington Ave corridor between Blair and E Springs.
 
 ```{r}
-create_summary_table(route_data)
+route_data <- travel_time |> 
+  filter(route_id == "E Wash (Blair <-> E Springs)")
 ```
 
-
-### Travel time plots
-```{r}
-#| column: body-outset
-
-create_scatterplot(route_data)
-```
-
-
-This plot shows the median travel time (middle line), the 25th and 75th percentile (interquartile range; box), 1.5 times the interquartile range (whiskers).
-```{r}
-create_boxplot(route_data)
-```
-
+{{< include _results_block.qmd >}}

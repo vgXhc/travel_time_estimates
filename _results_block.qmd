@@ -1,0 +1,29 @@
+```{r}
+create_map(route_data)
+```
+
+## Travel time estimates
+Travel time estimates in a sortable and filterable table:
+```{r}
+create_table(route_data)
+```
+
+### Summary statistics
+
+```{r}
+create_summary_table(route_data)
+```
+
+
+### Travel time plots
+```{r}
+#| column: body-outset
+
+create_scatterplot(route_data)
+```
+
+
+This plot shows the median travel time (middle line), the 25th and 75th percentile (interquartile range; box), 1.5 times the interquartile range (whiskers).
+```{r}
+create_boxplot(route_data)
+```
