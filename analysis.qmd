@@ -12,6 +12,7 @@ library(ggplot2)
 library(tmap)
 library(sf)
 library(gt)
+library(ggiraph)
 
 theme_set(theme_minimal())
 ```
@@ -74,21 +75,26 @@ percentiles |>
 }
 
 create_scatterplot <- function(route_data) {
-  route_data |> 
-  ggplot(aes(request_time_UTC, duration_minutes, color = direction, shape = weekend)) +
-  geom_point() +
+  p <- route_data |> 
+    mutate(tooltip = str_glue("{request_time_local}: {round(duration_minutes,1)} min")) |>
+  ggplot(aes(request_time_UTC, duration_minutes, color = direction, shape = weekend, tooltip = tooltip)) +
+  geom_point_interactive() +
   scale_x_datetime(timezone = "US/Central", date_minor_breaks = "3 hours", name = "Date/time") +
   ylab("Estimated travel time (minutes)") +
   theme(legend.position = "bottom")
+  
+  girafe(ggobj = p)
 }
 
 create_boxplot <- function(route_data) {
-  route_data |> 
-  ggplot(aes(direction, duration_minutes)) +
-  geom_boxplot(outliers = FALSE)+
-  geom_jitter(aes(color = weekend), width = .2) +
+  p <- route_data |> 
+    mutate(tooltip = str_glue("{request_time_local}: {round(duration_minutes,1)} min")) |>
+  ggplot(aes(direction, duration_minutes, tooltip = tooltip, group = direction)) +
+  geom_boxplot(outliers = FALSE) +
+  geom_jitter_interactive(aes(color = weekend), width = .2) +
   coord_flip() +
   theme(legend.position = "bottom")
+  girafe(ggobj = p)
 }
 
 create_map <- function(route_data) {
@@ -182,3 +188,4 @@ This plot shows the median travel time (middle line), the 25th and 75th percenti
 ```{r}
 create_boxplot(route_data)
 ```
+
