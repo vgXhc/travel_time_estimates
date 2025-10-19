@@ -137,7 +137,7 @@ These travel times estimates are for the East Washington Ave corridor between Bl
 
 ```{r}
 route_data <- travel_time |> 
-  filter(route_id == "E Wash (Blair <-> E Springs)")
+  filter(route_id == "E Wash (Blair <-> E Springs)" & distance_miles < 5.5)
 ```
 
 {{< include _results_block.qmd >}}
