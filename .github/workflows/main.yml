@@ -19,8 +19,6 @@ on:
     - cron: '30 14 * * *'
     # 9:00 AM CST (3:00 PM UTC)
     - cron: '0 15 * * *'
-    # 9:30 AM CST (3:30 PM UTC)
-    - cron: '30 15 * * *'
     # 10:00 AM CST (4:00 PM UTC)
     - cron: '0 16 * * *'
     # 12:00 PM CST (6:00 PM UTC)
@@ -45,8 +43,6 @@ on:
     - cron: '0 1 * * *'
     # 8:00 PM CST (2:00 AM UTC next day)
     - cron: '0 2 * * *'
-    # 10:00 PM CST (4:00 AM UTC next day)
-    - cron: '0 4 * * *'
     # 12:00 AM CST (6:00 AM UTC)
     - cron: '0 6 * * *'
 
