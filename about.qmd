@@ -2,7 +2,9 @@
 title: "About"
 format: html
 ---
-This website displays the data from the analysis of travel times in select Madison (Wisconsin) corridors. The main repository for the project is at https://github.com/vgXhc/travel_time_estimates
+This website displays the data from the analysis of travel time estimates in select Madison (Wisconsin) corridors. The data is pulled from the Google Routes API. The main repository for the project is at https://github.com/vgXhc/travel_time_estimates
+
+A blog post about the initial concept is available [here](https://haraldkliems.netlify.app/posts/2025-09-13-using-the-google-routes-api-to-collect-travel-time-data-during-a-traffic-trial/)
 
 Author/contact: Harald Kliems ([kliems@proton.me](kliems@proton.me))
 

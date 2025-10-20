@@ -93,7 +93,8 @@ create_boxplot <- function(route_data) {
   geom_boxplot(outliers = FALSE) +
   geom_jitter_interactive(aes(color = weekend), width = .2) +
   coord_flip() +
-  theme(legend.position = "bottom")
+  theme(legend.position = "bottom") +
+    ylab("Estimated travel time (minutes)")
   girafe(ggobj = p)
 }
 
