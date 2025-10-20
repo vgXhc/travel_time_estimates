@@ -109,8 +109,8 @@ route_data |>
 ```
 
 
-# John Nolen Corridor
-These travel time estimates are for the John Nolen Drive (JND) corridor between Rimrock and the "Hairball" (JND/Wilson/Willy/Blair). 
+# John Nolen Drive
+Travel time estimates for the John Nolen Drive corridor between Rimrock and the "Hairball" (JND/Wilson/Willy/Blair). 
 
 ```{r}
 route_data <- travel_time |> 
@@ -119,8 +119,8 @@ route_data <- travel_time |>
 
 {{< include _results_block.qmd >}}
 
-# Park Street Corridor
-These travel time estimates are for the Park Street corridor between Badger Road and University Ave. 
+# Park Street
+Travel time estimates for the Park Street corridor between Badger Road and University Ave. 
 
 ```{r}
 route_data <- travel_time |> 
@@ -132,12 +132,72 @@ route_data <- travel_time |>
 
 {{< include _results_block.qmd >}}
 
-# East Washington Ave
-These travel times estimates are for the East Washington Ave corridor between Blair and E Springs.
+# East Washington Avenue
+Travel time estimates for the East Washington Ave corridor between Blair and E Springs.
 
 ```{r}
 route_data <- travel_time |> 
   filter(route_id == "E Wash (Blair <-> E Springs)" & distance_miles < 5.5)
+```
+
+{{< include _results_block.qmd >}}
+
+# University Avenue
+Travel times estimates for University Ave between Bassett and Babcock.
+
+```{r}
+route_data <- travel_time |> 
+  filter(route_id == "University (Bassett to Babcock)")
+```
+
+{{< include _results_block.qmd >}}
+
+# Johnson Street
+Travel time estimates for Johnson Street between Orchard and First.
+
+```{r}
+route_data <- travel_time |> 
+  filter(route_id == "Johnson (Orchard to First)" & distance < 4700) 
+```
+
+{{< include _results_block.qmd >}}
+
+# Gorham Street
+Travel time estimates for Gorham Street between First and Bassett.
+
+```{r}
+route_data <- travel_time |> 
+  filter(route_id == "Gorham (First to Bassett)" & distance < 3500)
+```
+
+{{< include _results_block.qmd >}}
+
+# Broom Street
+Travel time estimates for Broom Street between John Nolen and University.
+
+```{r}
+route_data <- travel_time |> 
+  filter(route_id == "Broom (JND to University)")
+```
+
+{{< include _results_block.qmd >}}
+
+# Regent Street
+Travel time estimates for Regent Street between Monroe and 
+
+```{r}
+route_data <- travel_time |> 
+  filter(route_id == "Regent (Monroe <-> Bedford)" & distance < 2210)
+```
+
+{{< include _results_block.qmd >}}
+
+# Williamson Street
+Travel time estimates for Williamson Street between the "Hairball" and Thornton.
+
+```{r}
+route_data <-  travel_time |> 
+  filter(route_id == "Williamson (Wilson <-> Thornton)")
 ```
 
 {{< include _results_block.qmd >}}
