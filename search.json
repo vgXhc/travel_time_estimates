@@ -4,14 +4,14 @@
     "href": "analysis.html",
     "title": "Travel time estimates",
     "section": "",
-    "text": "Travel time estimates for the John Nolen Drive corridor between Rimrock and the “Hairball” (JND/Wilson/Willy/Blair).\n\n\n\n\n\n\n\n\n\nTravel time estimates in a sortable and filterable table:\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nEstimated travel times (minutes)\n\n\nDirection\nMean\nMedian\nMinimum\nMaximum\n90% of trips\n\n\n\n\nNB\n6.9\n5.3\n3.9\n20.6\n4.2-15\n\n\nSB\n5.7\n5.2\n4.3\n15.1\n4.6-8.5\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThis plot shows the median travel time (middle line), the 25th and 75th percentile (interquartile range; box), 1.5 times the interquartile range (whiskers)."
+    "text": "Travel time estimates for the John Nolen Drive corridor between Rimrock and the “Hairball” (JND/Wilson/Willy/Blair).\n\n\n\n\n\n\n\n\n\nTravel time estimates in a sortable and filterable table:\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nEstimated travel times (minutes)\n\n\nDirection\nMean\nMedian\nMinimum\nMaximum\n90% of trips\n\n\n\n\nNB\n7.0\n5.4\n3.9\n20.6\n4.2-15.4\n\n\nSB\n5.7\n5.2\n4.3\n15.1\n4.6-8.5\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThis plot shows the median travel time (middle line), the 25th and 75th percentile (interquartile range; box), 1.5 times the interquartile range (whiskers)."
   },
   {
     "objectID": "analysis.html#travel-time-estimates",
     "href": "analysis.html#travel-time-estimates",
     "title": "Travel time estimates",
     "section": "",
-    "text": "Travel time estimates in a sortable and filterable table:\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nEstimated travel times (minutes)\n\n\nDirection\nMean\nMedian\nMinimum\nMaximum\n90% of trips\n\n\n\n\nNB\n6.9\n5.3\n3.9\n20.6\n4.2-15\n\n\nSB\n5.7\n5.2\n4.3\n15.1\n4.6-8.5\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThis plot shows the median travel time (middle line), the 25th and 75th percentile (interquartile range; box), 1.5 times the interquartile range (whiskers)."
+    "text": "Travel time estimates in a sortable and filterable table:\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nEstimated travel times (minutes)\n\n\nDirection\nMean\nMedian\nMinimum\nMaximum\n90% of trips\n\n\n\n\nNB\n7.0\n5.4\n3.9\n20.6\n4.2-15.4\n\n\nSB\n5.7\n5.2\n4.3\n15.1\n4.6-8.5\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThis plot shows the median travel time (middle line), the 25th and 75th percentile (interquartile range; box), 1.5 times the interquartile range (whiskers)."
   },
   {
     "objectID": "analysis.html#travel-time-estimates-1",
@@ -60,7 +60,7 @@
     "href": "analysis.html#travel-time-estimates-7",
     "title": "Travel time estimates",
     "section": "Travel time estimates",
-    "text": "Travel time estimates\nTravel time estimates in a sortable and filterable table:\n\n\n\n\n\n\n\nSummary statistics\n\n\n\n\n\n\n\n\nEstimated travel times (minutes)\n\n\nDirection\nMean\nMedian\nMinimum\nMaximum\n90% of trips\n\n\n\n\nEB\n4.5\n4.2\n3.3\n12.6\n3.6-6.9\n\n\nWB\n4.8\n4.6\n3.7\n10.0\n4-6.1\n\n\n\n\n\n\n\n\n\nTravel time plots\n\n\n\n\n\n\nThis plot shows the median travel time (middle line), the 25th and 75th percentile (interquartile range; box), 1.5 times the interquartile range (whiskers)."
+    "text": "Travel time estimates\nTravel time estimates in a sortable and filterable table:\n\n\n\n\n\n\n\nSummary statistics\n\n\n\n\n\n\n\n\nEstimated travel times (minutes)\n\n\nDirection\nMean\nMedian\nMinimum\nMaximum\n90% of trips\n\n\n\n\nEB\n4.5\n4.2\n3.3\n12.6\n3.6-6.8\n\n\nWB\n4.8\n4.6\n3.7\n10.0\n4-6.1\n\n\n\n\n\n\n\n\n\nTravel time plots\n\n\n\n\n\n\nThis plot shows the median travel time (middle line), the 25th and 75th percentile (interquartile range; box), 1.5 times the interquartile range (whiskers)."
   },
   {
     "objectID": "analysis.html#travel-time-estimates-8",
