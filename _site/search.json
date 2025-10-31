@@ -4,13 +4,188 @@
     "href": "analysis.html",
     "title": "Travel time estimates",
     "section": "",
-    "text": "These travel time estimates are for the John Nolen Drive (JND) corridor between Rimrock and the “Hairball” (JND/Wilson/Willy/Blair).\n\n\n\n\n\n\n\n\n\nTravel time estimates in a sortable and filterable table:\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nEstimated travel times on JND (minutes)\n\n\nDirection\nMean\nMedian\nMinimum\nMaximum\n90% of trips\n\n\n\n\nNB\n6.6\n5.4\n4.0\n18.4\n4.2-12\n\n\nSB\n5.8\n5.4\n4.4\n12.3\n4.6-8.1\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThis plot shows the median travel time (middle line), the 25th and 75th percentile (interquartile range; box), 1.5 times the interquartile range (whiskers)."
+    "text": "Travel time estimates for the John Nolen Drive corridor between Rimrock and the “Hairball” (JND/Wilson/Willy/Blair).\n\n\n\n\n\n\n\n\n\nTravel time estimates in a sortable and filterable table: ::: {.panel-tabset} ## Overall\n\n\n\n\n\n\n\n\n\nOverallLast 7 daysLast 30 days\n\n\n\n\n\n\n\n\n\n\nEstimated travel times (minutes)\n\n\nDirection\nMean\nMedian\nMinimum\nMaximum\n90% of trips\n\n\n\n\nNB\n6.4\n5.3\n3.9\n19.2\n4.2-12\n\n\nSB\n5.8\n5.2\n4.3\n15.1\n4.6-8.6\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nEstimated travel times (minutes)\n\n\nDirection\nMean\nMedian\nMinimum\nMaximum\n90% of trips\n\n\n\n\nNB\n6.0\n5.2\n3.9\n19.2\n4.2-11\n\n\nSB\n5.8\n5.1\n4.3\n15.1\n4.5-9.2\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nEstimated travel times (minutes)\n\n\nDirection\nMean\nMedian\nMinimum\nMaximum\n90% of trips\n\n\n\n\nNB\n6.4\n5.3\n3.9\n19.2\n4.2-12\n\n\nSB\n5.8\n5.2\n4.3\n15.1\n4.6-8.6\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nOverallLast 7 daysLast 30 days\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThis plot shows the median travel time (middle line), the 25th and 75th percentile (interquartile range; box), 1.5 times the interquartile range (whiskers).\n\nOverallLast 7 daysLast 30 days"
   },
   {
     "objectID": "analysis.html#travel-time-estimates",
     "href": "analysis.html#travel-time-estimates",
     "title": "Travel time estimates",
     "section": "",
-    "text": "Travel time estimates in a sortable and filterable table:\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nEstimated travel times on JND (minutes)\n\n\nDirection\nMean\nMedian\nMinimum\nMaximum\n90% of trips\n\n\n\n\nNB\n6.6\n5.4\n4.0\n18.4\n4.2-12\n\n\nSB\n5.8\n5.4\n4.4\n12.3\n4.6-8.1\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThis plot shows the median travel time (middle line), the 25th and 75th percentile (interquartile range; box), 1.5 times the interquartile range (whiskers)."
+    "text": "Travel time estimates in a sortable and filterable table: ::: {.panel-tabset} ## Overall\n\n\n\n\n\n\n\n\n\nOverallLast 7 daysLast 30 days\n\n\n\n\n\n\n\n\n\n\nEstimated travel times (minutes)\n\n\nDirection\nMean\nMedian\nMinimum\nMaximum\n90% of trips\n\n\n\n\nNB\n6.4\n5.3\n3.9\n19.2\n4.2-12\n\n\nSB\n5.8\n5.2\n4.3\n15.1\n4.6-8.6\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nEstimated travel times (minutes)\n\n\nDirection\nMean\nMedian\nMinimum\nMaximum\n90% of trips\n\n\n\n\nNB\n6.0\n5.2\n3.9\n19.2\n4.2-11\n\n\nSB\n5.8\n5.1\n4.3\n15.1\n4.5-9.2\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nEstimated travel times (minutes)\n\n\nDirection\nMean\nMedian\nMinimum\nMaximum\n90% of trips\n\n\n\n\nNB\n6.4\n5.3\n3.9\n19.2\n4.2-12\n\n\nSB\n5.8\n5.2\n4.3\n15.1\n4.6-8.6\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nOverallLast 7 daysLast 30 days\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThis plot shows the median travel time (middle line), the 25th and 75th percentile (interquartile range; box), 1.5 times the interquartile range (whiskers).\n\nOverallLast 7 daysLast 30 days"
+  },
+  {
+    "objectID": "analysis.html#travel-time-estimates-1",
+    "href": "analysis.html#travel-time-estimates-1",
+    "title": "Travel time estimates",
+    "section": "Travel time estimates",
+    "text": "Travel time estimates\nTravel time estimates in a sortable and filterable table: ::: {.panel-tabset} ## Overall\n\n\n\n\n\n\n\nSummary statistics\n\nOverallLast 7 daysLast 30 days\n\n\n\n\n\n\n\n\n\n\nEstimated travel times (minutes)\n\n\nDirection\nMean\nMedian\nMinimum\nMaximum\n90% of trips\n\n\n\n\nNB\n8.8\n8.2\n6.0\n18.5\n6.5-12.6\n\n\nSB\n8.3\n8.0\n5.8\n17.9\n6.4-11.6\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nEstimated travel times (minutes)\n\n\nDirection\nMean\nMedian\nMinimum\nMaximum\n90% of trips\n\n\n\n\nNB\n8.6\n8.2\n6.0\n15.7\n6.4-12\n\n\nSB\n8.2\n8.0\n5.8\n12.8\n6.3-11.3\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nEstimated travel times (minutes)\n\n\nDirection\nMean\nMedian\nMinimum\nMaximum\n90% of trips\n\n\n\n\nNB\n8.8\n8.2\n6.0\n18.5\n6.5-12.6\n\n\nSB\n8.3\n8.0\n5.8\n17.9\n6.4-11.6\n\n\n\n\n\n\n\n\n\n\n\n\nTravel time plots\n\nOverallLast 7 daysLast 30 days\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThis plot shows the median travel time (middle line), the 25th and 75th percentile (interquartile range; box), 1.5 times the interquartile range (whiskers).\n\nOverallLast 7 daysLast 30 days"
+  },
+  {
+    "objectID": "analysis.html#travel-time-estimates-2",
+    "href": "analysis.html#travel-time-estimates-2",
+    "title": "Travel time estimates",
+    "section": "Travel time estimates",
+    "text": "Travel time estimates\nTravel time estimates in a sortable and filterable table: ::: {.panel-tabset} ## Overall\n\n\n\n\n\n\n\nSummary statistics\n\nOverallLast 7 daysLast 30 days\n\n\n\n\n\n\n\n\n\n\nEstimated travel times (minutes)\n\n\nDirection\nMean\nMedian\nMinimum\nMaximum\n90% of trips\n\n\n\n\nNB\n14.0\n13.9\n10.7\n20.7\n11.4-16.8\n\n\nSB\n13.5\n13.8\n10.4\n16.3\n11.1-15.2\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nEstimated travel times (minutes)\n\n\nDirection\nMean\nMedian\nMinimum\nMaximum\n90% of trips\n\n\n\n\nNB\n13.9\n13.9\n10.8\n20.7\n11.3-16.9\n\n\nSB\n13.5\n13.8\n10.4\n16.3\n11.1-15.3\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nEstimated travel times (minutes)\n\n\nDirection\nMean\nMedian\nMinimum\nMaximum\n90% of trips\n\n\n\n\nNB\n14.0\n13.9\n10.7\n20.7\n11.4-16.8\n\n\nSB\n13.5\n13.8\n10.4\n16.3\n11.1-15.2\n\n\n\n\n\n\n\n\n\n\n\n\nTravel time plots\n\nOverallLast 7 daysLast 30 days\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThis plot shows the median travel time (middle line), the 25th and 75th percentile (interquartile range; box), 1.5 times the interquartile range (whiskers).\n\nOverallLast 7 daysLast 30 days"
+  },
+  {
+    "objectID": "analysis.html#travel-time-estimates-3",
+    "href": "analysis.html#travel-time-estimates-3",
+    "title": "Travel time estimates",
+    "section": "Travel time estimates",
+    "text": "Travel time estimates\nTravel time estimates in a sortable and filterable table: ::: {.panel-tabset} ## Overall\n\n\n\n\n\n\n\nSummary statistics\n\nOverallLast 7 daysLast 30 days\n\n\n\n\n\n\n\n\n\n\nEstimated travel times (minutes)\n\n\nDirection\nMean\nMedian\nMinimum\nMaximum\n90% of trips\n\n\n\n\nWB\n3.3\n3.1\n2.5\n5.4\n2.7-4.3\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nEstimated travel times (minutes)\n\n\nDirection\nMean\nMedian\nMinimum\nMaximum\n90% of trips\n\n\n\n\nWB\n3.2\n3.1\n2.5\n4.8\n2.7-4\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nEstimated travel times (minutes)\n\n\nDirection\nMean\nMedian\nMinimum\nMaximum\n90% of trips\n\n\n\n\nWB\n3.3\n3.1\n2.5\n5.4\n2.7-4.3\n\n\n\n\n\n\n\n\n\n\n\n\nTravel time plots\n\nOverallLast 7 daysLast 30 days\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThis plot shows the median travel time (middle line), the 25th and 75th percentile (interquartile range; box), 1.5 times the interquartile range (whiskers).\n\nOverallLast 7 daysLast 30 days"
+  },
+  {
+    "objectID": "analysis.html#travel-time-estimates-4",
+    "href": "analysis.html#travel-time-estimates-4",
+    "title": "Travel time estimates",
+    "section": "Travel time estimates",
+    "text": "Travel time estimates\nTravel time estimates in a sortable and filterable table: ::: {.panel-tabset} ## Overall\n\n\n\n\n\n\n\nSummary statistics\n\nOverallLast 7 daysLast 30 days\n\n\n\n\n\n\n\n\n\n\nEstimated travel times (minutes)\n\n\nDirection\nMean\nMedian\nMinimum\nMaximum\n90% of trips\n\n\n\n\nNB\n10.2\n9.3\n7.0\n20.7\n7.3-16.4\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nEstimated travel times (minutes)\n\n\nDirection\nMean\nMedian\nMinimum\nMaximum\n90% of trips\n\n\n\n\nNB\n10.0\n9.1\n7.0\n20.1\n7.2-16.1\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nEstimated travel times (minutes)\n\n\nDirection\nMean\nMedian\nMinimum\nMaximum\n90% of trips\n\n\n\n\nNB\n10.2\n9.3\n7.0\n20.7\n7.3-16.4\n\n\n\n\n\n\n\n\n\n\n\n\nTravel time plots\n\nOverallLast 7 daysLast 30 days\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThis plot shows the median travel time (middle line), the 25th and 75th percentile (interquartile range; box), 1.5 times the interquartile range (whiskers).\n\nOverallLast 7 daysLast 30 days"
+  },
+  {
+    "objectID": "analysis.html#travel-time-estimates-5",
+    "href": "analysis.html#travel-time-estimates-5",
+    "title": "Travel time estimates",
+    "section": "Travel time estimates",
+    "text": "Travel time estimates\nTravel time estimates in a sortable and filterable table: ::: {.panel-tabset} ## Overall\n\n\n\n\n\n\n\nSummary statistics\n\nOverallLast 7 daysLast 30 days\n\n\n\n\n\n\n\n\n\n\nEstimated travel times (minutes)\n\n\nDirection\nMean\nMedian\nMinimum\nMaximum\n90% of trips\n\n\n\n\nSB\n7.1\n6.7\n5.1\n15.6\n5.4-10.8\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nEstimated travel times (minutes)\n\n\nDirection\nMean\nMedian\nMinimum\nMaximum\n90% of trips\n\n\n\n\nSB\n7.0\n6.7\n5.2\n11.6\n5.4-9.8\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nEstimated travel times (minutes)\n\n\nDirection\nMean\nMedian\nMinimum\nMaximum\n90% of trips\n\n\n\n\nSB\n7.1\n6.7\n5.1\n15.6\n5.4-10.8\n\n\n\n\n\n\n\n\n\n\n\n\nTravel time plots\n\nOverallLast 7 daysLast 30 days\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThis plot shows the median travel time (middle line), the 25th and 75th percentile (interquartile range; box), 1.5 times the interquartile range (whiskers).\n\nOverallLast 7 daysLast 30 days"
+  },
+  {
+    "objectID": "analysis.html#travel-time-estimates-6",
+    "href": "analysis.html#travel-time-estimates-6",
+    "title": "Travel time estimates",
+    "section": "Travel time estimates",
+    "text": "Travel time estimates\nTravel time estimates in a sortable and filterable table: ::: {.panel-tabset} ## Overall\n\n\n\n\n\n\n\nSummary statistics\n\nOverallLast 7 daysLast 30 days\n\n\n\n\n\n\n\n\n\n\nEstimated travel times (minutes)\n\n\nDirection\nMean\nMedian\nMinimum\nMaximum\n90% of trips\n\n\n\n\nNB\n3.6\n3.2\n2.0\n8.8\n2.3-6.2\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nEstimated travel times (minutes)\n\n\nDirection\nMean\nMedian\nMinimum\nMaximum\n90% of trips\n\n\n\n\nNB\n3.6\n3.2\n2.0\n8.2\n2.3-6.3\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nEstimated travel times (minutes)\n\n\nDirection\nMean\nMedian\nMinimum\nMaximum\n90% of trips\n\n\n\n\nNB\n3.6\n3.2\n2.0\n8.8\n2.3-6.2\n\n\n\n\n\n\n\n\n\n\n\n\nTravel time plots\n\nOverallLast 7 daysLast 30 days\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThis plot shows the median travel time (middle line), the 25th and 75th percentile (interquartile range; box), 1.5 times the interquartile range (whiskers).\n\nOverallLast 7 daysLast 30 days"
+  },
+  {
+    "objectID": "analysis.html#travel-time-estimates-7",
+    "href": "analysis.html#travel-time-estimates-7",
+    "title": "Travel time estimates",
+    "section": "Travel time estimates",
+    "text": "Travel time estimates\nTravel time estimates in a sortable and filterable table: ::: {.panel-tabset} ## Overall\n\n\n\n\n\n\n\nSummary statistics\n\nOverallLast 7 daysLast 30 days\n\n\n\n\n\n\n\n\n\n\nEstimated travel times (minutes)\n\n\nDirection\nMean\nMedian\nMinimum\nMaximum\n90% of trips\n\n\n\n\nEB\n4.5\n4.2\n3.3\n12.6\n3.6-6.8\n\n\nWB\n4.8\n4.6\n3.7\n10.0\n4-6.1\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nEstimated travel times (minutes)\n\n\nDirection\nMean\nMedian\nMinimum\nMaximum\n90% of trips\n\n\n\n\nEB\n4.5\n4.1\n3.5\n11.7\n3.6-6.8\n\n\nWB\n4.7\n4.6\n3.7\n7.7\n3.9-5.8\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nEstimated travel times (minutes)\n\n\nDirection\nMean\nMedian\nMinimum\nMaximum\n90% of trips\n\n\n\n\nEB\n4.5\n4.2\n3.3\n12.6\n3.6-6.8\n\n\nWB\n4.8\n4.6\n3.7\n10.0\n4-6.1\n\n\n\n\n\n\n\n\n\n\n\n\nTravel time plots\n\nOverallLast 7 daysLast 30 days\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThis plot shows the median travel time (middle line), the 25th and 75th percentile (interquartile range; box), 1.5 times the interquartile range (whiskers).\n\nOverallLast 7 daysLast 30 days"
+  },
+  {
+    "objectID": "analysis.html#travel-time-estimates-8",
+    "href": "analysis.html#travel-time-estimates-8",
+    "title": "Travel time estimates",
+    "section": "Travel time estimates",
+    "text": "Travel time estimates\nTravel time estimates in a sortable and filterable table: ::: {.panel-tabset} ## Overall\n\n\n\n\n\n\n\nSummary statistics\n\nOverallLast 7 daysLast 30 days\n\n\n\n\n\n\n\n\n\n\nEstimated travel times (minutes)\n\n\nDirection\nMean\nMedian\nMinimum\nMaximum\n90% of trips\n\n\n\n\nNB\n3.6\n3.6\n2.6\n5.2\n3.1-4.2\n\n\nSB\n3.4\n3.3\n2.5\n8.0\n2.7-3.9\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nEstimated travel times (minutes)\n\n\nDirection\nMean\nMedian\nMinimum\nMaximum\n90% of trips\n\n\n\n\nNB\n3.6\n3.6\n2.8\n4.8\n3.1-4.2\n\n\nSB\n3.3\n3.3\n2.5\n4.8\n2.7-4\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nEstimated travel times (minutes)\n\n\nDirection\nMean\nMedian\nMinimum\nMaximum\n90% of trips\n\n\n\n\nNB\n3.6\n3.6\n2.6\n5.2\n3.1-4.2\n\n\nSB\n3.4\n3.3\n2.5\n8.0\n2.7-3.9\n\n\n\n\n\n\n\n\n\n\n\n\nTravel time plots\n\nOverallLast 7 daysLast 30 days\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThis plot shows the median travel time (middle line), the 25th and 75th percentile (interquartile range; box), 1.5 times the interquartile range (whiskers).\n\nOverallLast 7 daysLast 30 days"
+  },
+  {
+    "objectID": "analysis.html#last-30-days",
+    "href": "analysis.html#last-30-days",
+    "title": "Travel time estimates",
+    "section": "",
+    "text": ":::\n\n\n\n\n\n\n\n\n\n\nEstimated travel times (minutes)\n\n\nDirection\nMean\nMedian\nMinimum\nMaximum\n90% of trips\n\n\n\n\nNB\n7.2\n5.5\n3.9\n20.6\n4.2-15.6\n\n\nSB\n5.8\n5.2\n4.3\n15.1\n4.6-8.6\n\n\n\n\n\n\n\n\n\n\n\nOverallLast 7 daysLast 30 days\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThis plot shows the median travel time (middle line), the 25th and 75th percentile (interquartile range; box), 1.5 times the interquartile range (whiskers).\n\nOverallLast 7 daysLast 30 days"
+  },
+  {
+    "objectID": "analysis.html#last-7-days-3",
+    "href": "analysis.html#last-7-days-3",
+    "title": "Travel time estimates",
+    "section": "Last 7 days",
+    "text": "Last 7 days"
+  },
+  {
+    "objectID": "analysis.html#last-30-days-3",
+    "href": "analysis.html#last-30-days-3",
+    "title": "Travel time estimates",
+    "section": "Last 30 days",
+    "text": "Last 30 days\n\n\n\n\n\n\n:::\n\nSummary statistics\n\n\n\n\n\n\n\n\nEstimated travel times (minutes)\n\n\nDirection\nMean\nMedian\nMinimum\nMaximum\n90% of trips\n\n\n\n\nNB\n8.8\n8.2\n6.0\n18.5\n6.5-12.6\n\n\nSB\n8.3\n8.0\n5.8\n17.9\n6.4-11.6\n\n\n\n\n\n\n\n\n\nTravel time plots\n\nOverallLast 7 daysLast 30 days\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThis plot shows the median travel time (middle line), the 25th and 75th percentile (interquartile range; box), 1.5 times the interquartile range (whiskers).\n\nOverallLast 7 daysLast 30 days"
+  },
+  {
+    "objectID": "analysis.html#last-7-days-6",
+    "href": "analysis.html#last-7-days-6",
+    "title": "Travel time estimates",
+    "section": "Last 7 days",
+    "text": "Last 7 days"
+  },
+  {
+    "objectID": "analysis.html#last-30-days-6",
+    "href": "analysis.html#last-30-days-6",
+    "title": "Travel time estimates",
+    "section": "Last 30 days",
+    "text": "Last 30 days\n\n\n\n\n\n\n:::\n\nSummary statistics\n\n\n\n\n\n\n\n\nEstimated travel times (minutes)\n\n\nDirection\nMean\nMedian\nMinimum\nMaximum\n90% of trips\n\n\n\n\nNB\n14.0\n13.9\n10.7\n20.7\n11.4-16.8\n\n\nSB\n13.5\n13.8\n10.4\n16.3\n11.1-15.2\n\n\n\n\n\n\n\n\n\nTravel time plots\n\nOverallLast 7 daysLast 30 days\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThis plot shows the median travel time (middle line), the 25th and 75th percentile (interquartile range; box), 1.5 times the interquartile range (whiskers).\n\nOverallLast 7 daysLast 30 days"
+  },
+  {
+    "objectID": "analysis.html#last-7-days-9",
+    "href": "analysis.html#last-7-days-9",
+    "title": "Travel time estimates",
+    "section": "Last 7 days",
+    "text": "Last 7 days"
+  },
+  {
+    "objectID": "analysis.html#last-30-days-9",
+    "href": "analysis.html#last-30-days-9",
+    "title": "Travel time estimates",
+    "section": "Last 30 days",
+    "text": "Last 30 days\n\n\n\n\n\n\n:::\n\nSummary statistics\n\n\n\n\n\n\n\n\nEstimated travel times (minutes)\n\n\nDirection\nMean\nMedian\nMinimum\nMaximum\n90% of trips\n\n\n\n\nWB\n3.3\n3.1\n2.5\n5.4\n2.7-4.3\n\n\n\n\n\n\n\n\n\nTravel time plots\n\nOverallLast 7 daysLast 30 days\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThis plot shows the median travel time (middle line), the 25th and 75th percentile (interquartile range; box), 1.5 times the interquartile range (whiskers).\n\nOverallLast 7 daysLast 30 days"
+  },
+  {
+    "objectID": "analysis.html#last-7-days-12",
+    "href": "analysis.html#last-7-days-12",
+    "title": "Travel time estimates",
+    "section": "Last 7 days",
+    "text": "Last 7 days"
+  },
+  {
+    "objectID": "analysis.html#last-30-days-12",
+    "href": "analysis.html#last-30-days-12",
+    "title": "Travel time estimates",
+    "section": "Last 30 days",
+    "text": "Last 30 days\n\n\n\n\n\n\n:::\n\nSummary statistics\n\n\n\n\n\n\n\n\nEstimated travel times (minutes)\n\n\nDirection\nMean\nMedian\nMinimum\nMaximum\n90% of trips\n\n\n\n\nNB\n10.2\n9.3\n7.0\n20.7\n7.3-16.4\n\n\n\n\n\n\n\n\n\nTravel time plots\n\nOverallLast 7 daysLast 30 days\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThis plot shows the median travel time (middle line), the 25th and 75th percentile (interquartile range; box), 1.5 times the interquartile range (whiskers).\n\nOverallLast 7 daysLast 30 days"
+  },
+  {
+    "objectID": "analysis.html#last-7-days-15",
+    "href": "analysis.html#last-7-days-15",
+    "title": "Travel time estimates",
+    "section": "Last 7 days",
+    "text": "Last 7 days"
+  },
+  {
+    "objectID": "analysis.html#last-30-days-15",
+    "href": "analysis.html#last-30-days-15",
+    "title": "Travel time estimates",
+    "section": "Last 30 days",
+    "text": "Last 30 days\n\n\n\n\n\n\n:::\n\nSummary statistics\n\n\n\n\n\n\n\n\nEstimated travel times (minutes)\n\n\nDirection\nMean\nMedian\nMinimum\nMaximum\n90% of trips\n\n\n\n\nSB\n7.1\n6.7\n5.1\n15.6\n5.4-10.8\n\n\n\n\n\n\n\n\n\nTravel time plots\n\nOverallLast 7 daysLast 30 days\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThis plot shows the median travel time (middle line), the 25th and 75th percentile (interquartile range; box), 1.5 times the interquartile range (whiskers).\n\nOverallLast 7 daysLast 30 days"
+  },
+  {
+    "objectID": "analysis.html#last-7-days-18",
+    "href": "analysis.html#last-7-days-18",
+    "title": "Travel time estimates",
+    "section": "Last 7 days",
+    "text": "Last 7 days"
+  },
+  {
+    "objectID": "analysis.html#last-30-days-18",
+    "href": "analysis.html#last-30-days-18",
+    "title": "Travel time estimates",
+    "section": "Last 30 days",
+    "text": "Last 30 days\n\n\n\n\n\n\n:::\n\nSummary statistics\n\n\n\n\n\n\n\n\nEstimated travel times (minutes)\n\n\nDirection\nMean\nMedian\nMinimum\nMaximum\n90% of trips\n\n\n\n\nNB\n3.6\n3.2\n2.0\n8.8\n2.3-6.2\n\n\n\n\n\n\n\n\n\nTravel time plots\n\nOverallLast 7 daysLast 30 days\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThis plot shows the median travel time (middle line), the 25th and 75th percentile (interquartile range; box), 1.5 times the interquartile range (whiskers).\n\nOverallLast 7 daysLast 30 days"
+  },
+  {
+    "objectID": "analysis.html#last-7-days-21",
+    "href": "analysis.html#last-7-days-21",
+    "title": "Travel time estimates",
+    "section": "Last 7 days",
+    "text": "Last 7 days"
+  },
+  {
+    "objectID": "analysis.html#last-30-days-21",
+    "href": "analysis.html#last-30-days-21",
+    "title": "Travel time estimates",
+    "section": "Last 30 days",
+    "text": "Last 30 days\n\n\n\n\n\n\n:::\n\nSummary statistics\n\n\n\n\n\n\n\n\nEstimated travel times (minutes)\n\n\nDirection\nMean\nMedian\nMinimum\nMaximum\n90% of trips\n\n\n\n\nEB\n4.5\n4.2\n3.3\n12.6\n3.6-6.8\n\n\nWB\n4.8\n4.6\n3.7\n10.0\n4-6.1\n\n\n\n\n\n\n\n\n\nTravel time plots\n\nOverallLast 7 daysLast 30 days\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThis plot shows the median travel time (middle line), the 25th and 75th percentile (interquartile range; box), 1.5 times the interquartile range (whiskers).\n\nOverallLast 7 daysLast 30 days"
+  },
+  {
+    "objectID": "analysis.html#last-7-days-24",
+    "href": "analysis.html#last-7-days-24",
+    "title": "Travel time estimates",
+    "section": "Last 7 days",
+    "text": "Last 7 days"
+  },
+  {
+    "objectID": "analysis.html#last-30-days-24",
+    "href": "analysis.html#last-30-days-24",
+    "title": "Travel time estimates",
+    "section": "Last 30 days",
+    "text": "Last 30 days\n\n\n\n\n\n\n:::\n\nSummary statistics\n\n\n\n\n\n\n\n\nEstimated travel times (minutes)\n\n\nDirection\nMean\nMedian\nMinimum\nMaximum\n90% of trips\n\n\n\n\nNB\n3.6\n3.6\n2.6\n5.2\n3.1-4.2\n\n\nSB\n3.4\n3.3\n2.5\n8.0\n2.7-3.9\n\n\n\n\n\n\n\n\n\nTravel time plots\n\nOverallLast 7 daysLast 30 days\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThis plot shows the median travel time (middle line), the 25th and 75th percentile (interquartile range; box), 1.5 times the interquartile range (whiskers).\n\nOverallLast 7 daysLast 30 days"
   }
 ]

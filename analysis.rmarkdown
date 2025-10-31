@@ -1,0 +1,1319 @@
+---
+title: "Travel time estimates"
+author: "Harald Kliems"
+date: "`r Sys.Date()`"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(tidyverse)
+library(reactable)
+library(ggplot2)
+library(tmap)
+library(sf)
+library(gt)
+library(ggiraph)
+
+theme_set(theme_minimal())
+```
+
+```{r load-data-define-functions}
+travel_time <- readRDS("data/data_clean.RDS")
+
+#function to filter the data to the last 7 days
+filter_dates <- function(x, days) {
+  x |> 
+    filter(request_time_local >= today() - days(days))
+}
+
+decode_polyline <- function(polyline_string) {
+
+  # Decode the polyline to get lat/lng coordinates
+  coords <- googlePolylines::decode(polyline_string)
+  coords <- coords[[1]]
+
+    # Create an sf LINESTRING object
+linestring <- st_linestring(as.matrix(coords[, c("lon", "lat")]))
+
+return(list(linestring))
+}
+
+create_table <- function(route_data) {
+  route_data |> 
+      mutate(duration_minutes = round(duration_minutes, 1),
+         static_duration = round(static_duration/60, 1)) |> 
+  select(request_time_local, direction, distance_miles, duration_minutes, static_duration, day_of_week, weekend) |> 
+  reactable(filterable = TRUE,
+            columns = list(
+    request_time_local = colDef(name = "Date/time", format = colFormat(datetime = TRUE)),
+    distance_miles = colDef(name = "Distance (miles)", format = colFormat(digits = 1)),
+    duration_minutes = colDef(name = "Travel time (minutes)"),
+    static_duration = colDef(name = "Typical travel time (minutes)"),
+    day_of_week = colDef(name = "Day of week"),
+    weekend = colDef(name = "Weekend"),
+    direction = colDef(name = "Direction")))
+}
+
+create_summary_table <- function(route_data) {
+  percentiles <- route_data |> 
+  group_by(direction) |> 
+  summarise(
+          mean = mean(duration_minutes),
+          median = median(duration_minutes),
+          min = min(duration_minutes),
+          max = max(duration_minutes),
+          duration_5_pct = quantile(duration_minutes, c(0.05)),
+          duration_95_pct = quantile(duration_minutes, c(0.95))) |> 
+  mutate(duration_90 = paste0(round(duration_5_pct, 1), "-", round(duration_95_pct,1 )))
+
+percentiles |> 
+  select(-duration_5_pct, -duration_95_pct) |> 
+  gt() |> 
+  fmt_number(columns = where(is.numeric), decimals = 1) |> 
+  tab_header(title = "Estimated travel times (minutes)") |> 
+  cols_label(direction = "Direction",
+             mean = "Mean",
+             median = "Median",
+             min = "Minimum",
+             max = "Maximum",
+             duration_90 = "90% of trips"
+             )
+}
+
+create_scatterplot <- function(route_data) {
+  p <- route_data |> 
+    mutate(tooltip = str_glue("{request_time_local}: {round(duration_minutes,1)} min")) |>
+  ggplot(aes(request_time_UTC, duration_minutes, color = direction, shape = weekend, tooltip = tooltip)) +
+  geom_point_interactive() +
+  scale_x_datetime(timezone = "US/Central", date_minor_breaks = "3 hours", name = "Date/time") +
+  ylab("Estimated travel time (minutes)") +
+  theme(legend.position = "bottom")
+  
+  girafe(ggobj = p)
+}
+
+create_boxplot <- function(route_data) {
+  p <- route_data |> 
+    mutate(tooltip = str_glue("{request_time_local}: {round(duration_minutes,1)} min")) |>
+  ggplot(aes(direction, duration_minutes, tooltip = tooltip, group = direction)) +
+  geom_boxplot(outliers = FALSE) +
+  geom_jitter_interactive(aes(color = weekend), width = .2) +
+  coord_flip() +
+  theme(legend.position = "bottom") +
+    ylab("Estimated travel time (minutes)")
+  girafe(ggobj = p)
+}
+
+create_map <- function(route_data) {
+  tmap_mode("view")
+route_data |> 
+  rowwise() |> 
+  mutate(linestring = decode_polyline(polyline)) |> 
+  st_as_sf(sf_column_name = "linestring") |> 
+  tm_shape() +
+  tm_lines(col = "direction", col_alpha = 0.03)
+}
+```
+
+
+
+
+
+# John Nolen Drive
+Travel time estimates for the John Nolen Drive corridor between Rimrock and the "Hairball" (JND/Wilson/Willy/Blair). 
+
+
+
+
+```{r}
+route_data <- travel_time |> 
+  filter(route_id == "John Nolen Dr (Rimrock <-> Hairball)" & distance_miles < 3) 
+```
+
+```{r}
+create_map(route_data)
+```
+
+
+
+## Travel time estimates
+Travel time estimates in a sortable and filterable table:
+::: {.panel-tabset}
+## Overall
+
+
+```{r}
+create_table(route_data)
+```
+
+
+
+
+
+### Summary statistics
+::: {.panel-tabset}
+## Overall
+
+
+```{r}
+create_summary_table(route_data)
+```
+
+
+
+## Last 7 days
+
+
+```{r}
+create_summary_table(filter_dates(route_data, 7))
+```
+
+
+
+## Last 30 days
+
+
+```{r}
+create_summary_table(filter_dates(route_data, 30))
+```
+
+
+:::
+
+### Travel time plots
+
+::: {.panel-tabset}
+## Overall
+
+
+```{r}
+#| column: body-outset
+
+create_scatterplot(route_data)
+```
+
+
+
+## Last 7 days
+
+
+
+```{r}
+#| column: body-outset
+
+create_scatterplot(filter_dates(route_data, 7))
+```
+
+
+
+## Last 30 days
+
+
+
+```{r}
+#| column: body-outset
+
+create_scatterplot(filter_dates(route_data, 30))
+```
+
+
+:::
+
+This plot shows the median travel time (middle line), the 25th and 75th percentile (interquartile range; box), 1.5 times the interquartile range (whiskers).
+
+::: {.panel-tabset}
+## Overall
+
+
+```{r}
+create_boxplot(route_data)
+```
+
+
+
+## Last 7 days
+
+
+```{r}
+create_boxplot(filter_dates(route_data, 7))
+```
+
+
+
+## Last 30 days
+
+
+```{r}
+create_boxplot(filter_dates(route_data, 30))
+```
+
+
+:::
+
+
+
+# Park Street
+Travel time estimates for the Park Street corridor between Badger Road and University Ave. 
+
+
+
+
+```{r}
+route_data <- travel_time |> 
+  filter(route_id == "Park (Badger <-> University)" & 
+           route_description %in% c("Park Badger to Park University via Wisconsin Law Enforcement Officers Hwy and S Park St",
+                              "Park University to Park Badger via N Park St")) 
+```
+
+```{r}
+create_map(route_data)
+```
+
+
+
+## Travel time estimates
+Travel time estimates in a sortable and filterable table:
+::: {.panel-tabset}
+## Overall
+
+
+```{r}
+create_table(route_data)
+```
+
+
+
+
+
+### Summary statistics
+::: {.panel-tabset}
+## Overall
+
+
+```{r}
+create_summary_table(route_data)
+```
+
+
+
+## Last 7 days
+
+
+```{r}
+create_summary_table(filter_dates(route_data, 7))
+```
+
+
+
+## Last 30 days
+
+
+```{r}
+create_summary_table(filter_dates(route_data, 30))
+```
+
+
+:::
+
+### Travel time plots
+
+::: {.panel-tabset}
+## Overall
+
+
+```{r}
+#| column: body-outset
+
+create_scatterplot(route_data)
+```
+
+
+
+## Last 7 days
+
+
+
+```{r}
+#| column: body-outset
+
+create_scatterplot(filter_dates(route_data, 7))
+```
+
+
+
+## Last 30 days
+
+
+
+```{r}
+#| column: body-outset
+
+create_scatterplot(filter_dates(route_data, 30))
+```
+
+
+:::
+
+This plot shows the median travel time (middle line), the 25th and 75th percentile (interquartile range; box), 1.5 times the interquartile range (whiskers).
+
+::: {.panel-tabset}
+## Overall
+
+
+```{r}
+create_boxplot(route_data)
+```
+
+
+
+## Last 7 days
+
+
+```{r}
+create_boxplot(filter_dates(route_data, 7))
+```
+
+
+
+## Last 30 days
+
+
+```{r}
+create_boxplot(filter_dates(route_data, 30))
+```
+
+
+:::
+
+
+
+# East Washington Avenue
+Travel time estimates for the East Washington Ave corridor between Blair and E Springs.
+
+
+
+
+```{r}
+route_data <- travel_time |> 
+  filter(route_id == "E Wash (Blair <-> E Springs)" & distance_miles < 5.5)
+```
+
+```{r}
+create_map(route_data)
+```
+
+
+
+## Travel time estimates
+Travel time estimates in a sortable and filterable table:
+::: {.panel-tabset}
+## Overall
+
+
+```{r}
+create_table(route_data)
+```
+
+
+
+
+
+### Summary statistics
+::: {.panel-tabset}
+## Overall
+
+
+```{r}
+create_summary_table(route_data)
+```
+
+
+
+## Last 7 days
+
+
+```{r}
+create_summary_table(filter_dates(route_data, 7))
+```
+
+
+
+## Last 30 days
+
+
+```{r}
+create_summary_table(filter_dates(route_data, 30))
+```
+
+
+:::
+
+### Travel time plots
+
+::: {.panel-tabset}
+## Overall
+
+
+```{r}
+#| column: body-outset
+
+create_scatterplot(route_data)
+```
+
+
+
+## Last 7 days
+
+
+
+```{r}
+#| column: body-outset
+
+create_scatterplot(filter_dates(route_data, 7))
+```
+
+
+
+## Last 30 days
+
+
+
+```{r}
+#| column: body-outset
+
+create_scatterplot(filter_dates(route_data, 30))
+```
+
+
+:::
+
+This plot shows the median travel time (middle line), the 25th and 75th percentile (interquartile range; box), 1.5 times the interquartile range (whiskers).
+
+::: {.panel-tabset}
+## Overall
+
+
+```{r}
+create_boxplot(route_data)
+```
+
+
+
+## Last 7 days
+
+
+```{r}
+create_boxplot(filter_dates(route_data, 7))
+```
+
+
+
+## Last 30 days
+
+
+```{r}
+create_boxplot(filter_dates(route_data, 30))
+```
+
+
+:::
+
+
+
+# University Avenue
+Travel times estimates for University Ave between Bassett and Babcock.
+
+
+
+
+```{r}
+route_data <- travel_time |> 
+  filter(route_id == "University (Bassett to Babcock)")
+```
+
+```{r}
+create_map(route_data)
+```
+
+
+
+## Travel time estimates
+Travel time estimates in a sortable and filterable table:
+::: {.panel-tabset}
+## Overall
+
+
+```{r}
+create_table(route_data)
+```
+
+
+
+
+
+### Summary statistics
+::: {.panel-tabset}
+## Overall
+
+
+```{r}
+create_summary_table(route_data)
+```
+
+
+
+## Last 7 days
+
+
+```{r}
+create_summary_table(filter_dates(route_data, 7))
+```
+
+
+
+## Last 30 days
+
+
+```{r}
+create_summary_table(filter_dates(route_data, 30))
+```
+
+
+:::
+
+### Travel time plots
+
+::: {.panel-tabset}
+## Overall
+
+
+```{r}
+#| column: body-outset
+
+create_scatterplot(route_data)
+```
+
+
+
+## Last 7 days
+
+
+
+```{r}
+#| column: body-outset
+
+create_scatterplot(filter_dates(route_data, 7))
+```
+
+
+
+## Last 30 days
+
+
+
+```{r}
+#| column: body-outset
+
+create_scatterplot(filter_dates(route_data, 30))
+```
+
+
+:::
+
+This plot shows the median travel time (middle line), the 25th and 75th percentile (interquartile range; box), 1.5 times the interquartile range (whiskers).
+
+::: {.panel-tabset}
+## Overall
+
+
+```{r}
+create_boxplot(route_data)
+```
+
+
+
+## Last 7 days
+
+
+```{r}
+create_boxplot(filter_dates(route_data, 7))
+```
+
+
+
+## Last 30 days
+
+
+```{r}
+create_boxplot(filter_dates(route_data, 30))
+```
+
+
+:::
+
+
+
+# Johnson Street
+Travel time estimates for Johnson Street between Orchard and First.
+
+
+
+
+```{r}
+route_data <- travel_time |> 
+  filter(route_id == "Johnson (Orchard to First)" & distance < 4700) 
+```
+
+```{r}
+create_map(route_data)
+```
+
+
+
+## Travel time estimates
+Travel time estimates in a sortable and filterable table:
+::: {.panel-tabset}
+## Overall
+
+
+```{r}
+create_table(route_data)
+```
+
+
+
+
+
+### Summary statistics
+::: {.panel-tabset}
+## Overall
+
+
+```{r}
+create_summary_table(route_data)
+```
+
+
+
+## Last 7 days
+
+
+```{r}
+create_summary_table(filter_dates(route_data, 7))
+```
+
+
+
+## Last 30 days
+
+
+```{r}
+create_summary_table(filter_dates(route_data, 30))
+```
+
+
+:::
+
+### Travel time plots
+
+::: {.panel-tabset}
+## Overall
+
+
+```{r}
+#| column: body-outset
+
+create_scatterplot(route_data)
+```
+
+
+
+## Last 7 days
+
+
+
+```{r}
+#| column: body-outset
+
+create_scatterplot(filter_dates(route_data, 7))
+```
+
+
+
+## Last 30 days
+
+
+
+```{r}
+#| column: body-outset
+
+create_scatterplot(filter_dates(route_data, 30))
+```
+
+
+:::
+
+This plot shows the median travel time (middle line), the 25th and 75th percentile (interquartile range; box), 1.5 times the interquartile range (whiskers).
+
+::: {.panel-tabset}
+## Overall
+
+
+```{r}
+create_boxplot(route_data)
+```
+
+
+
+## Last 7 days
+
+
+```{r}
+create_boxplot(filter_dates(route_data, 7))
+```
+
+
+
+## Last 30 days
+
+
+```{r}
+create_boxplot(filter_dates(route_data, 30))
+```
+
+
+:::
+
+
+
+# Gorham Street
+Travel time estimates for Gorham Street between First and Bassett.
+
+
+
+
+```{r}
+route_data <- travel_time |> 
+  filter(route_id == "Gorham (First to Bassett)" & distance < 3500)
+```
+
+```{r}
+create_map(route_data)
+```
+
+
+
+## Travel time estimates
+Travel time estimates in a sortable and filterable table:
+::: {.panel-tabset}
+## Overall
+
+
+```{r}
+create_table(route_data)
+```
+
+
+
+
+
+### Summary statistics
+::: {.panel-tabset}
+## Overall
+
+
+```{r}
+create_summary_table(route_data)
+```
+
+
+
+## Last 7 days
+
+
+```{r}
+create_summary_table(filter_dates(route_data, 7))
+```
+
+
+
+## Last 30 days
+
+
+```{r}
+create_summary_table(filter_dates(route_data, 30))
+```
+
+
+:::
+
+### Travel time plots
+
+::: {.panel-tabset}
+## Overall
+
+
+```{r}
+#| column: body-outset
+
+create_scatterplot(route_data)
+```
+
+
+
+## Last 7 days
+
+
+
+```{r}
+#| column: body-outset
+
+create_scatterplot(filter_dates(route_data, 7))
+```
+
+
+
+## Last 30 days
+
+
+
+```{r}
+#| column: body-outset
+
+create_scatterplot(filter_dates(route_data, 30))
+```
+
+
+:::
+
+This plot shows the median travel time (middle line), the 25th and 75th percentile (interquartile range; box), 1.5 times the interquartile range (whiskers).
+
+::: {.panel-tabset}
+## Overall
+
+
+```{r}
+create_boxplot(route_data)
+```
+
+
+
+## Last 7 days
+
+
+```{r}
+create_boxplot(filter_dates(route_data, 7))
+```
+
+
+
+## Last 30 days
+
+
+```{r}
+create_boxplot(filter_dates(route_data, 30))
+```
+
+
+:::
+
+
+
+# Broom Street
+Travel time estimates for Broom Street between John Nolen and University.
+
+
+
+
+```{r}
+route_data <- travel_time |> 
+  filter(route_id == "Broom (JND to University)")
+```
+
+```{r}
+create_map(route_data)
+```
+
+
+
+## Travel time estimates
+Travel time estimates in a sortable and filterable table:
+::: {.panel-tabset}
+## Overall
+
+
+```{r}
+create_table(route_data)
+```
+
+
+
+
+
+### Summary statistics
+::: {.panel-tabset}
+## Overall
+
+
+```{r}
+create_summary_table(route_data)
+```
+
+
+
+## Last 7 days
+
+
+```{r}
+create_summary_table(filter_dates(route_data, 7))
+```
+
+
+
+## Last 30 days
+
+
+```{r}
+create_summary_table(filter_dates(route_data, 30))
+```
+
+
+:::
+
+### Travel time plots
+
+::: {.panel-tabset}
+## Overall
+
+
+```{r}
+#| column: body-outset
+
+create_scatterplot(route_data)
+```
+
+
+
+## Last 7 days
+
+
+
+```{r}
+#| column: body-outset
+
+create_scatterplot(filter_dates(route_data, 7))
+```
+
+
+
+## Last 30 days
+
+
+
+```{r}
+#| column: body-outset
+
+create_scatterplot(filter_dates(route_data, 30))
+```
+
+
+:::
+
+This plot shows the median travel time (middle line), the 25th and 75th percentile (interquartile range; box), 1.5 times the interquartile range (whiskers).
+
+::: {.panel-tabset}
+## Overall
+
+
+```{r}
+create_boxplot(route_data)
+```
+
+
+
+## Last 7 days
+
+
+```{r}
+create_boxplot(filter_dates(route_data, 7))
+```
+
+
+
+## Last 30 days
+
+
+```{r}
+create_boxplot(filter_dates(route_data, 30))
+```
+
+
+:::
+
+
+
+# Regent Street
+Travel time estimates for Regent Street between Monroe and 
+
+
+
+
+```{r}
+route_data <- travel_time |> 
+  filter(route_id == "Regent (Monroe <-> Bedford)" & distance < 2210)
+```
+
+```{r}
+create_map(route_data)
+```
+
+
+
+## Travel time estimates
+Travel time estimates in a sortable and filterable table:
+::: {.panel-tabset}
+## Overall
+
+
+```{r}
+create_table(route_data)
+```
+
+
+
+
+
+### Summary statistics
+::: {.panel-tabset}
+## Overall
+
+
+```{r}
+create_summary_table(route_data)
+```
+
+
+
+## Last 7 days
+
+
+```{r}
+create_summary_table(filter_dates(route_data, 7))
+```
+
+
+
+## Last 30 days
+
+
+```{r}
+create_summary_table(filter_dates(route_data, 30))
+```
+
+
+:::
+
+### Travel time plots
+
+::: {.panel-tabset}
+## Overall
+
+
+```{r}
+#| column: body-outset
+
+create_scatterplot(route_data)
+```
+
+
+
+## Last 7 days
+
+
+
+```{r}
+#| column: body-outset
+
+create_scatterplot(filter_dates(route_data, 7))
+```
+
+
+
+## Last 30 days
+
+
+
+```{r}
+#| column: body-outset
+
+create_scatterplot(filter_dates(route_data, 30))
+```
+
+
+:::
+
+This plot shows the median travel time (middle line), the 25th and 75th percentile (interquartile range; box), 1.5 times the interquartile range (whiskers).
+
+::: {.panel-tabset}
+## Overall
+
+
+```{r}
+create_boxplot(route_data)
+```
+
+
+
+## Last 7 days
+
+
+```{r}
+create_boxplot(filter_dates(route_data, 7))
+```
+
+
+
+## Last 30 days
+
+
+```{r}
+create_boxplot(filter_dates(route_data, 30))
+```
+
+
+:::
+
+
+
+# Williamson Street
+Travel time estimates for Williamson Street between the "Hairball" and Thornton.
+
+
+
+
+```{r}
+route_data <-  travel_time |> 
+  filter(route_id == "Williamson (Wilson <-> Thornton)")
+```
+
+```{r}
+create_map(route_data)
+```
+
+
+
+## Travel time estimates
+Travel time estimates in a sortable and filterable table:
+::: {.panel-tabset}
+## Overall
+
+
+```{r}
+create_table(route_data)
+```
+
+
+
+
+
+### Summary statistics
+::: {.panel-tabset}
+## Overall
+
+
+```{r}
+create_summary_table(route_data)
+```
+
+
+
+## Last 7 days
+
+
+```{r}
+create_summary_table(filter_dates(route_data, 7))
+```
+
+
+
+## Last 30 days
+
+
+```{r}
+create_summary_table(filter_dates(route_data, 30))
+```
+
+
+:::
+
+### Travel time plots
+
+::: {.panel-tabset}
+## Overall
+
+
+```{r}
+#| column: body-outset
+
+create_scatterplot(route_data)
+```
+
+
+
+## Last 7 days
+
+
+
+```{r}
+#| column: body-outset
+
+create_scatterplot(filter_dates(route_data, 7))
+```
+
+
+
+## Last 30 days
+
+
+
+```{r}
+#| column: body-outset
+
+create_scatterplot(filter_dates(route_data, 30))
+```
+
+
+:::
+
+This plot shows the median travel time (middle line), the 25th and 75th percentile (interquartile range; box), 1.5 times the interquartile range (whiskers).
+
+::: {.panel-tabset}
+## Overall
+
+
+```{r}
+create_boxplot(route_data)
+```
+
+
+
+## Last 7 days
+
+
+```{r}
+create_boxplot(filter_dates(route_data, 7))
+```
+
+
+
+## Last 30 days
+
+
+```{r}
+create_boxplot(filter_dates(route_data, 30))
+```
+
+
+:::
+
+

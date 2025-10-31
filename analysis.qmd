@@ -20,6 +20,12 @@ theme_set(theme_minimal())
 ```{r load-data-define-functions}
 travel_time <- readRDS("data/data_clean.RDS")
 
+#function to filter the data to the last 7 days
+filter_dates <- function(x, days) {
+  x |> 
+    filter(request_time_local >= today() - days(days))
+}
+
 decode_polyline <- function(polyline_string) {
 
   # Decode the polyline to get lat/lng coordinates
@@ -115,7 +121,7 @@ Travel time estimates for the John Nolen Drive corridor between Rimrock and the 
 
 ```{r}
 route_data <- travel_time |> 
-  filter(route_id == "John Nolen Dr (Rimrock <-> Hairball)") 
+  filter(route_id == "John Nolen Dr (Rimrock <-> Hairball)" & distance_miles < 3) 
 ```
 
 {{< include _results_block.qmd >}}

@@ -4,26 +4,74 @@ create_map(route_data)
 
 ## Travel time estimates
 Travel time estimates in a sortable and filterable table:
+::: {.panel-tabset}
+## Overall
 ```{r}
 create_table(route_data)
 ```
 
-### Summary statistics
 
+
+### Summary statistics
+::: {.panel-tabset}
+## Overall
 ```{r}
 create_summary_table(route_data)
 ```
 
+## Last 7 days
+```{r}
+create_summary_table(filter_dates(route_data, 7))
+```
+
+## Last 30 days
+```{r}
+create_summary_table(filter_dates(route_data, 30))
+```
+:::
 
 ### Travel time plots
+
+::: {.panel-tabset}
+## Overall
 ```{r}
 #| column: body-outset
 
 create_scatterplot(route_data)
 ```
 
+## Last 7 days
+
+```{r}
+#| column: body-outset
+
+create_scatterplot(filter_dates(route_data, 7))
+```
+
+## Last 30 days
+
+```{r}
+#| column: body-outset
+
+create_scatterplot(filter_dates(route_data, 30))
+```
+:::
 
 This plot shows the median travel time (middle line), the 25th and 75th percentile (interquartile range; box), 1.5 times the interquartile range (whiskers).
+
+::: {.panel-tabset}
+## Overall
 ```{r}
 create_boxplot(route_data)
 ```
+
+## Last 7 days
+```{r}
+create_boxplot(filter_dates(route_data, 7))
+```
+
+## Last 30 days
+```{r}
+create_boxplot(filter_dates(route_data, 30))
+```
+:::
