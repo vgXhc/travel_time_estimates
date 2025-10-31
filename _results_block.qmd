@@ -18,6 +18,10 @@ create_table(route_data)
 ```{r}
 create_summary_table(route_data)
 ```
+## Last 24 hours
+```{r}
+create_summary_table(filter_dates(route_data, 1))
+```
 
 ## Last 7 days
 ```{r}
@@ -38,6 +42,14 @@ create_summary_table(filter_dates(route_data, 30))
 #| column: body-outset
 
 create_scatterplot(route_data)
+```
+
+## Last 24 hours
+
+```{r}
+#| column: body-outset
+
+create_scatterplot(filter_dates(route_data, 1))
 ```
 
 ## Last 7 days
@@ -63,6 +75,11 @@ This plot shows the median travel time (middle line), the 25th and 75th percenti
 ## Overall
 ```{r}
 create_boxplot(route_data)
+```
+
+## Last 24 hours
+```{r}
+create_boxplot(filter_dates(route_data, 1))
 ```
 
 ## Last 7 days

@@ -111,23 +111,29 @@ route_data |>
   mutate(linestring = decode_polyline(polyline)) |> 
   st_as_sf(sf_column_name = "linestring") |> 
   tm_shape() +
-  tm_lines(col = "direction", col_alpha = 0.03)
+  tm_lines(col = "direction", col_alpha = 0.06)
 }
 ```
 
 
 # John Nolen Drive
-Travel time estimates for the John Nolen Drive corridor between Rimrock and the "Hairball" (JND/Wilson/Willy/Blair). 
+Travel time estimates for the John Nolen Drive corridor between Rimrock and the "Hairball" (JND/Wilson/Willy/Blair). Note that for this route, the shortest duration route is shown even when that involves not taking JND itself but an alternative route. 
 
 ```{r}
+# route_data <- travel_time |> 
+#   filter(route_id == "John Nolen Dr (Rimrock <-> Hairball)" & distance_miles < 3) 
+
 route_data <- travel_time |> 
-  filter(route_id == "John Nolen Dr (Rimrock <-> Hairball)" & distance_miles < 3) 
+  filter(route_id == "John Nolen Dr (Rimrock <-> Hairball)") |> 
+  group_by(request_time_UTC) |> 
+  mutate(shortest_duration = min(duration)) |> 
+  filter(duration == shortest_duration)
 ```
 
 {{< include _results_block.qmd >}}
 
 # Park Street
-Travel time estimates for the Park Street corridor between Badger Road and University Ave. 
+Travel time estimates for the Park Street corridor between Badger Road and University Ave.
 
 ```{r}
 route_data <- travel_time |> 
@@ -174,7 +180,7 @@ Travel time estimates for Johnson Street between Babcock/Orchard and First. Note
 
 ```{r}
 route_data <- travel_time |> 
-  filter(route_id == "Johnson (Babcock/Orchard* to First)" & distance < 4700) 
+  filter(route_id == "Johnson (Babcock/Orchard* to First)" & distance < 5020) 
 ```
 
 {{< include _results_block.qmd >}}
