@@ -139,6 +139,16 @@ route_data <- travel_time |>
 
 {{< include _results_block.qmd >}}
 
+# West Washington Avenue
+Travel time estimates for the West Washington Ave corridor between Park and Fairchild.
+
+```{r}
+route_data <- travel_time |> 
+  filter(route_id == "W Wash (Park <-> Fairchild)")
+```
+
+{{< include _results_block.qmd >}}
+
 # East Washington Avenue
 Travel time estimates for the East Washington Ave corridor between Blair and E Springs.
 
@@ -160,7 +170,7 @@ route_data <- travel_time |>
 {{< include _results_block.qmd >}}
 
 # Johnson Street
-Travel time estimates for Johnson Street between Orchard and First.
+Travel time estimates for Johnson Street between Babcock/Orchard and First. Note that before October 31, the start point was Orchard St. Since then, the start point is at Babcock.
 
 ```{r}
 route_data <- travel_time |> 

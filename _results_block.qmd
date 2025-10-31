@@ -4,7 +4,7 @@ create_map(route_data)
 
 ## Travel time estimates
 Travel time estimates in a sortable and filterable table:
-::: {.panel-tabset}
+
 ## Overall
 ```{r}
 create_table(route_data)

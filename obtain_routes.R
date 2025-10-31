@@ -17,6 +17,7 @@ OD <- list(
   "Johnson_First_inbound" = "EjFFIEpvaG5zb24gU3QgJiBOIEZpcnN0IFN0LCBNYWRpc29uLCBXSSA1MzcwNCwgVVNBImYiZAoUChIJnUXwx39TBogRPSbdiBRfApwSFAoSCZ1F8Md_UwaIET0m3YgUXwKcGhQKEglxZHLwe1MGiBEhF4UxTBvydhoUChIJyYMt1YFTBogRt1DP1-5tfKMiCg2ep68ZFa9ivMo",
   "University_Babcock" = "EiY0MDUgQmFiY29jayBEciwgTWFkaXNvbiwgV0kgNTM3MDYsIFVTQSIxEi8KFAoSCT3PV-HGrAeIEV1_lghmhvOxEJUDKhQKEgnp9d9ax6wHiBGQ8k_yQ353jg",
   "Johnson_Orchard" = "EikxMjYyIFcgSm9obnNvbiBTdCwgTWFkaXNvbiwgV0kgNTM3MDYsIFVTQSIxEi8KFAoSCa82OLnIrAeIET0P-Y_A50lFEO4JKhQKEgkbipoxNVMGiBEw0s6SmKjDiA",
+  "Johnson_Babcock" = "ChIJ4cNx8MasB4gRvYbfuIo3g3s",
   "Johnson_First_outbound" = "ChIJp5bo6n9TBogRS5zC4AWaxFw",
   "E_Wash_E_Springs_outbound" = "ChIJkbie2PRWBogRwBp5EacTCzk",
   "E_Wash_E_Springs_inbound" = "ChIJmxSTKvVWBogRMrS3QN0reB8",
@@ -34,7 +35,11 @@ OD <- list(
   "Broom_Gorham" = "EjBOIEJyb29tIFN0ICYgVyBHb3JoYW0gU3QsIE1hZGlzb24sIFdJIDUzNzAzLCBVU0EiZiJkChQKEgmRvi9nNlMGiBE4lkC_kJNLzRIUChIJkb4vZzZTBogROJZAv5CTS80aFAoSCa1WKh03UwaIETrwk5plcFplGhQKEgndeI7ON1MGiBEFS_9cHUc4miIKDQyZrBkVdMa3yg",
   "North_Shore_Bedford_WB" = "EjFTIEJlZGZvcmQgU3QgJiBOIFNob3JlIERyLCBNYWRpc29uLCBXSSA1MzcwMywgVVNBImYiZAoUChIJi77lUCVTBogR0wqFxVu0eNQSFAoSCYu-5VAlUwaIEdMKhcVbtHjUGhQKEgmXChE5MFMGiBG_UnTf7v1CExoUChIJe4g8RiVTBogReDzdRbDcMzEiCg3WV6sZFY5duMo",
   "Regent_Monroe" = "Ei1SZWdlbnQgU3QgJiBNb25yb2UgU3QsIE1hZGlzb24sIFdJIDUzNzExLCBVU0EiZiJkChQKEgkTSHhgw6wHiBEufN3t3ebWqBIUChIJE0h4YMOsB4gRLnzd7d3m1qgaFAoSCWWR03lYrAeIEWHtAniU930-GhQKEgkDcMeV46wHiBFMOTmiBxo-jSIKDQOfqxkVLa-0yg",
-  "North_Shore_Bedford_EB" = "ChIJfVkbiC9TBogR_gz5zugkDng"
+  "North_Shore_Bedford_EB" = "ChIJfVkbiC9TBogR_gz5zugkDng",
+  "Park_W_Wash_EB" = "ChIJGYssDdOsB4gRkFEnVWK86UM",
+  "Park_W_Wash_WB" = "ChIJBbqtBtOsB4gRimg8BCyj3E4", # Bus stop S Park at W Washington
+  "W_Wash_Fairchild_EB" = "ChIJw-XDDTlTBogRsUkfMq7O_4o", #Code Development Bureau
+  "W_Wash_Fairchild_WB" = "ChIJXeHEBzlTBogR7H9TsWYHnpA", #Bus stop W Washington at N Fairchild
 )
 
 
@@ -116,7 +121,7 @@ gorham <- get_route(origin = "Johnson_First_inbound",
 university <- get_route(origin = "University_Bassett",
                         destination = "University_Babcock")
 
-johnson <- get_route(origin = "Johnson_Orchard",
+johnson <- get_route(origin = "Johnson_Babcock",
                      destination = "Johnson_First_outbound")
 
 east_wash_EB <- get_route(origin = "E_Wash_Blair_outbound",
@@ -146,6 +151,12 @@ regent_eastbound <- get_route(origin = "Regent_Monroe",
 regent_westbound <- get_route(origin = "North_Shore_Bedford_WB",
                               destination = "Regent_Monroe")
 
+west_wash_WB <- get_routes(origin = "W_Wash_Fairchild_WB",
+                           destination = "Park_W_Wash_WB")
+
+west_wash_EB <- get_routes(origin = "Park_W_Wash_EB",
+                           destination = "W_Wash_Fairchild_EB")
+
 # combine routes ----------------------------------------------------------
 
 full_routes <- bind_rows(
@@ -161,6 +172,8 @@ full_routes <- bind_rows(
   williamson_inbound,
   park_inbound,
   park_outbound,
+  west_wash_EB,
+  west_wash_WB,
   broom,
   regent_eastbound,
   regent_westbound
@@ -183,16 +196,18 @@ full_routes_clean <- full_routes |>
       origin %in% c("JND_Rimrock_inbound", "Hairball_outbound") ~ "John Nolen Dr (Rimrock <-> Hairball)",
       origin == "Johnson_First_inbound" ~ "Gorham (First to Bassett)",
       origin == "University_Bassett" ~ "University (Bassett to Babcock)",
-      origin == "Johnson_Orchard" ~ "Johnson (Orchard to First)",
+      origin %in% c("Johnson_Orchard", "Johnson_Babcock") ~ "Johnson (Babcock/Orchard* to First)",
       origin %in% c("E_Wash_E_Springs_inbound","E_Wash_Blair_outbound") ~ "E Wash (Blair <-> E Springs)",
       origin %in% c("Williamson_Wilson_outbound", "Williamson_Thornton_inbound") ~ "Williamson (Wilson <-> Thornton)",
       origin %in% c("Park_Badger_inbound", "Park_University_outbound") ~ "Park (Badger <-> University)",
       origin == "Broom_JND" ~ "Broom (JND to University)",
-      origin %in% c(origin = "Regent_Monroe", "North_Shore_Bedford_WB") ~ "Regent (Monroe <-> Bedford)"
+      origin %in% c("Regent_Monroe", "North_Shore_Bedford_WB") ~ "Regent (Monroe <-> Bedford)",
+      origin %in% c("W_Wash_Fairchild_WB", "Park_W_Wash_EB") ~ "W Wash (Park <-> Fairchild)"
     ),
     direction = case_match(origin,
                            c("JND_Rimrock_inbound", 
                              "Johnson_Orchard",
+                             "Johnson_Babcock",
                              "E_Wash_Blair_outbound",
                              "Williamson_Wilson_outbound",
                              "Park_Badger_inbound",
@@ -203,8 +218,10 @@ full_routes_clean <- full_routes |>
                              "Williamson_Thornton_inbound",
                              "Park_University_outbound") ~ "SB",
                            c("University_Bassett",
-                             "North_Shore_Bedford_WB") ~ "WB",
-                           c("Regent_Monroe") ~ "EB"),
+                             "North_Shore_Bedford_WB",
+                             "W_Wash_Fairchild_WB") ~ "WB",
+                           c("Regent_Monroe",
+                             "Park_W_Wash_EB") ~ "EB"),
     route_description = paste0(origin, " to ", destination, " via ", description),
     route_description = str_replace_all(route_description, "_", " "),
     route_description = str_replace_all(route_description, "inbound|outbound", ""),
