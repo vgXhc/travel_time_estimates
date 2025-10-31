@@ -151,10 +151,10 @@ regent_eastbound <- get_route(origin = "Regent_Monroe",
 regent_westbound <- get_route(origin = "North_Shore_Bedford_WB",
                               destination = "Regent_Monroe")
 
-west_wash_WB <- get_routes(origin = "W_Wash_Fairchild_WB",
+west_wash_WB <- get_route(origin = "W_Wash_Fairchild_WB",
                            destination = "Park_W_Wash_WB")
 
-west_wash_EB <- get_routes(origin = "Park_W_Wash_EB",
+west_wash_EB <- get_route(origin = "Park_W_Wash_EB",
                            destination = "W_Wash_Fairchild_EB")
 
 # combine routes ----------------------------------------------------------
