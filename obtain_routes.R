@@ -39,7 +39,7 @@ OD <- list(
   "Park_W_Wash_EB" = "ChIJGYssDdOsB4gRkFEnVWK86UM",
   "Park_W_Wash_WB" = "ChIJBbqtBtOsB4gRimg8BCyj3E4", # Bus stop S Park at W Washington
   "W_Wash_Fairchild_EB" = "ChIJw-XDDTlTBogRsUkfMq7O_4o", #Code Development Bureau
-  "W_Wash_Fairchild_WB" = "ChIJXeHEBzlTBogR7H9TsWYHnpA", #Bus stop W Washington at N Fairchild
+  "W_Wash_Fairchild_WB" = "ChIJXeHEBzlTBogR7H9TsWYHnpA" #Bus stop W Washington at N Fairchild
 )
 
 
