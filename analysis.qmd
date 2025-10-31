@@ -174,7 +174,7 @@ Travel time estimates for Johnson Street between Babcock/Orchard and First. Note
 
 ```{r}
 route_data <- travel_time |> 
-  filter(route_id == "Johnson (Orchard to First)" & distance < 4700) 
+  filter(route_id == "Johnson (Babcock/Orchard* to First)" & distance < 4700) 
 ```
 
 {{< include _results_block.qmd >}}
