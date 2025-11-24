@@ -4,31 +4,31 @@ on:
   workflow_dispatch:
   schedule:
     # 5:59 AM CST (11:59 UTC)
-    - cron: '59 11 * * *'
+    - cron: '59 11 * * 1-5'
     # 6:30 AM CST (12:30 PM UTC)
-    - cron: '30 12 * * *'
+    - cron: '30 12 * * 1-5'
     # 7:00 AM CST (1:00 PM UTC)
-    - cron: '0 13 * * *'
+    - cron: '0 13 * * 1-5'
     # 7:30 AM CST (1:30 PM UTC)
-    - cron: '30 13 * * *'
+    - cron: '30 13 * * 1-5'
     # 8:00 AM CST (2:00 PM UTC)
-    - cron: '0 14 * * *'
+    - cron: '0 14 * * 1-5'
     # 8:30 AM CST (2:30 PM UTC)
-    - cron: '30 14 * * *'
+    - cron: '30 14 * * 1-5'
     # 9:00 AM CST (3:00 PM UTC)
     - cron: '0 15 * * *'
     # 3:30 PM CST (9:30 PM UTC)
-    - cron: '30 21 * * *'
+    - cron: '30 21 * * 1-5'
     # 4:00 PM CST (10:00 PM UTC)
-    - cron: '0 22 * * *'
+    - cron: '0 22 * * 1-5'
     # 4:30 PM CST (10:30 PM UTC)
-    - cron: '30 22 * * *'
+    - cron: '30 22 * * 1-5'
     # 5:00 PM CST (11:00 PM UTC)
     - cron: '0 23 * * *'
     # 5:30 PM CST (11:30 PM UTC)
-    - cron: '30 23 * * *'
+    - cron: '30 23 * * 1-5'
     # 6:00 PM CST (12:00 AM UTC next day)
-    - cron: '0 0 * * *'
+    - cron: '0 0 * * 1-5'
     # 7:00 PM CST (1:00 AM UTC next day)
     - cron: '0 1 * * *'
 
@@ -37,8 +37,6 @@ jobs:
   update_routes:
     runs-on: macOS-latest
     env:
-      S3_WILLY_KEY: ${{ secrets.S3_WILLY_KEY }}
-      S3_WILLY_SECRET: ${{ secrets.S3_WILLY_SECRET }}
       ROUTES_API_KEY: ${{ secrets.ROUTES_API_KEY }}
     steps:
       - uses: actions/checkout@v4
