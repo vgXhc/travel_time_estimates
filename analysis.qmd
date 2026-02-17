@@ -105,7 +105,7 @@ create_boxplot <- function(route_data) {
 }
 
 create_map <- function(route_data) {
-  tmap_mode("view")
+  tmap_mode("plot")
 route_data |> 
   rowwise() |> 
   mutate(linestring = decode_polyline(polyline)) |> 
