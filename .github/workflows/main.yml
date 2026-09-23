@@ -35,7 +35,7 @@ on:
 
 jobs:
   update_routes:
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
     env:
       ROUTES_API_KEY: ${{ secrets.ROUTES_API_KEY }}
     steps:
