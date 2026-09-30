@@ -1,1 +1,1 @@
-Sitemap: https://vgXhc.github.io/travel_time_estimates/sitemap.xml
+Sitemap: git@github-travel:vgXhc/travel_time_estimates.git/sitemap.xml
